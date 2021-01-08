@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.sun.istack.NotNull;
+
 import lombok.Data;
 
 @Entity
@@ -16,18 +18,25 @@ public class Factura {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotNull
 	private Long nroFactura;
+	@NotNull
 	private Float monto;
+	@NotNull
 	private Date fechaPrimerVencimiento;
 	private Date fechaSegundoVencimiento;
+	@NotNull
 	private Float montoPrimerVencimiento;
 	private Float montoSegundoVencimiento;
 	private Date fechaPago;
 	private Time horaPago;
 	@ManyToOne
+	@NotNull
 	private Servicio servicio;
 	@ManyToOne
+	@NotNull
 	private Cuenta cuenta;
 	@ManyToOne
+	@NotNull
 	private EstadoFactura estado;
 }

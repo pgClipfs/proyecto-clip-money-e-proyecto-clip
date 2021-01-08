@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.sun.istack.NotNull;
+
 import lombok.Data;
 
 @Entity
@@ -15,8 +17,11 @@ public class Cuenta {
 	@GeneratedValue
 	private Long nro_cuenta;
 	@Column(unique = true)
+	@NotNull
 	private String cvu;
+	@NotNull
 	private Float saldo;
 	@ManyToOne
+	@NotNull
 	private Moneda moneda;
 }
