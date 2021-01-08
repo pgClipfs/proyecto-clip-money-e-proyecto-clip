@@ -29,6 +29,17 @@ public class UsuarioServicio {
 	
 	public Usuario getUsuarioPorNick(String nick) {
 		Optional<Usuario> usuario = this.repositorio.findByNick(nick);
+		
+		if (usuario.isPresent()) {
+			return usuario.get();
+		} else {
+			return null;
+		}
+	}
+
+	public Usuario getUsuarioPorDni(Integer dniUsuario) {
+		Optional<Usuario> usuario = this.repositorio.findByDatos_Dni(dniUsuario);
+		
 		if (usuario.isPresent()) {
 			return usuario.get();
 		} else {

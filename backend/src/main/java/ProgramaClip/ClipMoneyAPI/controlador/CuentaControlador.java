@@ -1,6 +1,7 @@
 package ProgramaClip.ClipMoneyAPI.controlador;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,21 @@ public class CuentaControlador {
 	@GetMapping(params = "id")
 	public Optional<Cuenta> getCuentaPorId(Long id) {
 		return this.servicio.getCuentaPorId(id);
+	}
+	
+	@GetMapping(params = "cvu")
+	public Optional<Cuenta> getCuentaPorCvu(String cvu) {
+		return this.servicio.getCuentaPorCvu(cvu);
+	}
+	
+	@GetMapping(params = "nickUsuario")
+	public List<Cuenta> getCuentasPorNickUsuario(String nickUsuario) {
+		return this.servicio.getCuentasPorNickUsuario(nickUsuario);
+	}
+	
+	@GetMapping(params = "dniUsuario")
+	public List<Cuenta> getCuentasPorDniUsuario(Integer dniUsuario) {
+		return this.servicio.getCuentasPorDniUsuario(dniUsuario);
 	}
 	
 	@PostMapping
