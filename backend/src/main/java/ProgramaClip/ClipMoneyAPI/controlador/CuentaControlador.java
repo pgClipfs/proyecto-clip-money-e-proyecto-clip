@@ -54,6 +54,21 @@ public class CuentaControlador {
 		return this.servicio.getCuentasPorDniUsuario(dniUsuario);
 	}
 	
+	@GetMapping(params = {"idUsuario", "idMoneda"})
+	public List<Cuenta> getCuentasPorIdUsuarioEIdMoneda(Long idUsuario, Integer idMoneda) {
+		return this.servicio.getCuentasPorIdUsuarioEIdMoneda(idUsuario, idMoneda);
+	}
+	
+	@GetMapping(params = {"nickUsuario", "idMoneda"})
+	public List<Cuenta> getCuentasPorNickUsuarioEIdMoneda(String nickUsuario, Integer idMoneda) {
+		return this.servicio.getCuentasPorNickUsuarioEIdMoneda(nickUsuario, idMoneda);
+	}
+	
+	@GetMapping(params = {"dniUsuario", "nombreMoneda"})
+	public List<Cuenta> getCuentasPorDniUsuarioEIdMoneda(Integer dniUsuario, Integer idMoneda) {
+		return this.servicio.getCuentasPorDniUsuarioEIdMoneda(dniUsuario, idMoneda);
+	}
+	
 	@PostMapping
 	public Cuenta crearCuenta(@RequestBody Cuenta cuenta) {
 		return this.servicio.crearCuenta(cuenta);

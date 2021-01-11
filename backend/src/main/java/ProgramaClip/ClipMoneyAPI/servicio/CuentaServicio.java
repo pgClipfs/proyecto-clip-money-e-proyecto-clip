@@ -1,5 +1,6 @@
 package ProgramaClip.ClipMoneyAPI.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,12 @@ public class CuentaServicio {
 		return this.repositorio.findByCvu(cvu);
 	}
 
+	public List<Cuenta> getCuentasPorIdUsuario(Long idUsuario) {
+		Usuario usuario = this.usuarioServicio.getUsuarioPorId(idUsuario);
+		
+		return usuario.getCuentas();
+	}
+
 	public List<Cuenta> getCuentasPorNickUsuario(String nickUsuario) {
 		Usuario usuario = this.usuarioServicio.getUsuarioPorNick(nickUsuario);
 		
@@ -43,12 +50,36 @@ public class CuentaServicio {
 		return usuario.getCuentas();
 	}
 
-	public List<Cuenta> getCuentasPorIdUsuario(Long idUsuario) {
+	public List<Cuenta> getCuentasPorIdUsuarioEIdMoneda(Long idUsuario, Integer idMoneda) {
 		Usuario usuario = this.usuarioServicio.getUsuarioPorId(idUsuario);
 		
-		return usuario.getCuentas();
+		return this.getCuentasPorIdMoneda(usuario.getCuentas(), idMoneda);
 	}
 
+	public List<Cuenta> getCuentasPorNickUsuarioEIdMoneda(String nickUsuario, Integer idMoneda) {
+		Usuario usuario = this.usuarioServicio.getUsuarioPorNick(nickUsuario);
+		
+		return this.getCuentasPorIdMoneda(usuario.getCuentas(), idMoneda);
+	}
+
+	public List<Cuenta> getCuentasPorDniUsuarioEIdMoneda(Integer dniUsuario, Integer idMoneda) {
+		Usuario usuario = this.usuarioServicio.getUsuarioPorDni(dniUsuario);
+		
+		return this.getCuentasPorIdMoneda(usuario.getCuentas(), idMoneda);
+	}
+
+	public List<Cuenta> getCuentasPorIdMoneda(List<Cuenta> cuentas, Integer idMoneda) {
+		List<Cuenta> cuentasMoneda = new ArrayList<>();
+		
+		cuentas.forEach((c) -> {
+			if (c.getMoneda().getId() == idMoneda) {
+				cuentasMoneda.add(c);
+			}
+		});
+		
+		return cuentasMoneda;
+	}
+	
 	public Cuenta crearCuenta(Cuenta cuenta) {
 		return this.repositorio.save(cuenta);		
 	}
