@@ -39,6 +39,11 @@ public class CuentaControlador {
 		return this.servicio.getCuentaPorCvu(cvu);
 	}
 	
+	@GetMapping(params = "idUsuario")
+	public List<Cuenta> getCuentasPorIdUsuario(Long idUsuario) {
+		return this.servicio.getCuentasPorIdUsuario(idUsuario);
+	}
+	
 	@GetMapping(params = "nickUsuario")
 	public List<Cuenta> getCuentasPorNickUsuario(String nickUsuario) {
 		return this.servicio.getCuentasPorNickUsuario(nickUsuario);

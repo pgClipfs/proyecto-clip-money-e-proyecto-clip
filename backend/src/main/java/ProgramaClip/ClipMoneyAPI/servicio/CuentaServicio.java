@@ -43,6 +43,12 @@ public class CuentaServicio {
 		return usuario.getCuentas();
 	}
 
+	public List<Cuenta> getCuentasPorIdUsuario(Long idUsuario) {
+		Usuario usuario = this.usuarioServicio.getUsuarioPorId(idUsuario);
+		
+		return usuario.getCuentas();
+	}
+
 	public Cuenta crearCuenta(Cuenta cuenta) {
 		return this.repositorio.save(cuenta);		
 	}
