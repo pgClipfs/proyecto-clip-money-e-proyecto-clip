@@ -15,7 +15,7 @@ import lombok.Data;
 public class Cuenta {
 	@Id
 	@GeneratedValue
-	private Long nro_cuenta;
+	private Long nroCuenta;
 	@Column(unique = true)
 	@NotNull
 	private String cvu;

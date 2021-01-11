@@ -34,8 +34,7 @@ public class Factura {
 	@NotNull
 	private Servicio servicio;
 	@ManyToOne
-	@NotNull
-	private Cuenta cuenta;
+	private Cuenta cuentaPago;
 	@ManyToOne
 	@NotNull
 	private EstadoFactura estado;

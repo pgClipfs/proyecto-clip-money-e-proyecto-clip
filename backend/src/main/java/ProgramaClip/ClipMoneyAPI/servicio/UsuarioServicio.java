@@ -27,6 +27,16 @@ public class UsuarioServicio {
 		return false;
 	}
 	
+	public Usuario getUsuarioPorId(Long nick) {
+		Optional<Usuario> usuario = this.repositorio.findById(nick);
+		
+		if (usuario.isPresent()) {
+			return usuario.get();
+		} else {
+			return null;
+		}
+	}
+	
 	public Usuario getUsuarioPorNick(String nick) {
 		Optional<Usuario> usuario = this.repositorio.findByNick(nick);
 		
