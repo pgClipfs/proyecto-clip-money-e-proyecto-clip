@@ -1,0 +1,105 @@
+/* EMOCIÓN GENERAL */
+INSERT INTO emocion_general (id, nombre) VALUES 
+	(hibernate_sequence.nextval, 'Felicidad'),
+	(hibernate_sequence.nextval, 'Ira'),
+	(hibernate_sequence.nextval, 'Miedo'),
+	(hibernate_sequence.nextval, 'Sorpresa'),
+	(hibernate_sequence.nextval, 'Tristeza');
+
+
+/* EMOCIÓN ESPECÍFICA */
+INSERT INTO emocion_especifica (id, nombre) VALUES 
+	(hibernate_sequence.nextval, 'Aburrimiento'),
+	(hibernate_sequence.nextval, 'Agresividad'),
+	(hibernate_sequence.nextval, 'Alegría'),
+	(hibernate_sequence.nextval, 'Amenaza'),
+	(hibernate_sequence.nextval, 'Ansiedad'),
+	(hibernate_sequence.nextval, 'Asombro'),
+	(hibernate_sequence.nextval, 'Comedia'),
+	(hibernate_sequence.nextval, 'Confusión'),
+	(hibernate_sequence.nextval, 'Culpa'),
+	(hibernate_sequence.nextval, 'Decepción'),
+	(hibernate_sequence.nextval, 'Desesperación'),
+	(hibernate_sequence.nextval, 'Distante'),
+	(hibernate_sequence.nextval, 'Esperanzador'),
+	(hibernate_sequence.nextval, 'Exaltación'),
+	(hibernate_sequence.nextval, 'Frustración'),
+	(hibernate_sequence.nextval, 'Horror'),
+	(hibernate_sequence.nextval, 'Incomodidad'),
+	(hibernate_sequence.nextval, 'Inseguridad'),
+	(hibernate_sequence.nextval, 'Locura'),
+	(hibernate_sequence.nextval, 'Melancolía'),
+	(hibernate_sequence.nextval, 'Odio'),
+	(hibernate_sequence.nextval, 'Soledad'),
+	(hibernate_sequence.nextval, 'Tensión'),
+	(hibernate_sequence.nextval, 'Terror'),
+	(hibernate_sequence.nextval, 'Tranquilidad'),
+	(hibernate_sequence.nextval, 'Tristeza'),
+	(hibernate_sequence.nextval, 'Valentía');
+
+/* EMOCIÓN GENERAL EMOCIÓN ESPECÍFICA */
+INSERT INTO emocion_general_emociones (emocion_general_id, emociones_id) VALUES 
+	(5, 6),
+	(2, 7),
+	(1, 8),
+	(2, 9),
+	(3, 10),
+	(4, 11),
+	(1, 12),
+	(4, 13),
+	(5, 14),
+	(3, 15),
+	(5, 16),
+	(2, 17),
+	(1, 18),
+	(1, 19),
+	(2, 20),
+	(3, 21),
+	(3, 22),
+	(3, 23),
+	(2, 24),
+	(5, 25),
+	(2, 26),
+	(3, 27),
+	(4, 28),
+	(3, 29),
+	(1, 30),
+	(5, 31),
+	(1, 32);
+	
+/* LUGAR */
+INSERT INTO lugar (id, nombre) VALUES
+	(hibernate_sequence.nextval, 'Taberna'),
+	(hibernate_sequence.nextval, 'Ciudad'),
+	(hibernate_sequence.nextval, 'Puerto'),
+	(hibernate_sequence.nextval, 'Villa'),
+	(hibernate_sequence.nextval, 'Dungeon'),
+	(hibernate_sequence.nextval, 'Mágico'),
+	(hibernate_sequence.nextval, 'Lluvia'),
+	(hibernate_sequence.nextval, 'General');
+	
+/* CANCION */
+INSERT INTO cancion (id, extras, link, nombre, origen, emocion_id, lugar_id) VALUES
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=olmhqonMXBo', 'Lament of the Angel', 'The Binding of Isaac: Wrath of the Lamb OST', 16, 37),
+	(hibernate_sequence.nextval, 'Moksha Ramas', 'https://www.youtube.com/watch?v=Isl-EY2dn1Y', 'Phobos Anomaly (Cover)', 'Doom OST', 24, 37),
+	(hibernate_sequence.nextval, 'Guerra/Batalla', 'https://www.youtube.com/watch?v=k4zh8RwhjZ0', 'The Beast', 'Sicario OST', 29, 37),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=wEWF2xh5E8s', 'Sadness and Sorrow', 'Naruto OST', 14, 39),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=v712NiVK5uY', 'Waterfall', 'Undertale OST', 25, 39),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=OQ-kyWlislA', 'We''re Hungry Because we''re Alive', 'Kono Subarashi ni Shukufuku Wo! OST', 12, 33),
+	(hibernate_sequence.nextval, 'Manos', 'https://www.youtube.com/watch?v=ClXyUO3BJuk', 'Kyouchou', 'Fate/Stay Night OST', 21, 40),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=eqispO2Bi2k', 'Enter Hallownest', 'Hollow Knight OST', 11, 38),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=Ctuo3ws3EKs', 'Prologue', 'Celeste OST', 30, 38),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=WRAlNeOHI-g', 'The City Gates', 'Skyrim V OST', 11, 34),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=_PnxVpdL-lE', 'The Prestigious Mask', 'Nier OST', 30, 34),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=5k6kg---YKg', 'Naru, Embracing the Light', 'Ori and the Blind Forest OST', 8, 40),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=mmZGrvAvPZM', 'Ancient Stones', 'Skyrim V OST', 30, 34),
+	(hibernate_sequence.nextval, 'La tragedia del Rey Dragonborn', 'https://www.youtube.com/watch?v=V1eA4MK6VXw', 'Thornfelt Swamp', 'Ori and the Blind Forest OST', 16, 40),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=pQkajyGKvUU', 'Dung Defender', 'Hollow Knight OST', 32, 40),
+	(hibernate_sequence.nextval, 'Ending', 'https://www.youtube.com/watch?v=jWtekMB-GTU', 'Tidus Theme', 'Final Fantasy X OST', 18, 40),
+	(hibernate_sequence.nextval, 'Fuego y llamas', 'https://www.youtube.com/watch?v=dlYZAbSpi6s', 'Igo Soccer bu ~Norashiai~', 'Nichijou OST', 28, 40),
+	(hibernate_sequence.nextval, 'Tiamat', 'https://www.youtube.com/watch?v=khzyR_vtelA', 'Hymn of the Fayth (Cover)', 'Final Fantasy X OST', 17, 38),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=q0z08OpmEPc', 'Making of a Cyborg', 'Ghost in the Shell OST', 17, 38),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=5nz6XwMhp3U', 'First Step', 'Interstellar OST', 25, 38),
+	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=oIIuwtDL_ok', 'Queen''s Gardens', 'Hollow Knight OST', 30, 38),
+	(hibernate_sequence.nextval, 'Boss fight', 'https://www.youtube.com/watch?v=FT3sXT9x9CU', 'Ascension', 'The Binding of Isaac: Rebirth OST', 9, 37),
+	(hibernate_sequence.nextval, 'Pelea contra Tiamat', 'https://www.youtube.com/watch?v=0RMnjL6X2gg', 'My Innermost Apocalypse', 'The Binding of Isaac: Wrath of the Lamb OST', 24, 37);

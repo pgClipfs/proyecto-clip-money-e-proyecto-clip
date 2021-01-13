@@ -1,6 +1,7 @@
 package ProgramaClip.ClipMoneyAPI.servicio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,7 +81,36 @@ public class CuentaServicio {
 		return cuentasMoneda;
 	}
 	
+	public String generarCvuCuentaNueva(Cuenta cuenta) {
+		String idMoneda = cuenta.getMoneda().getId().toString();
+		String nroCuenta = cuenta.getNroCuenta().toString(); 
+		
+		int cantidadDeDigitosAGenerar = 22 - idMoneda.length() - nroCuenta.length();
+
+		String digitosFaltantes = Long.toString(new Date().getTime());
+
+		int resta = cantidadDeDigitosAGenerar - digitosFaltantes.length();
+			
+		if (resta > 0) {
+			String ceros = "";
+			
+			for (int i = 0; i < resta; i ++) {
+				ceros += "0";
+			}
+			
+			digitosFaltantes = ceros + digitosFaltantes;
+		} else if (resta < 0) {
+			digitosFaltantes = digitosFaltantes.substring(-resta);
+		}
+		
+		String cvu = nroCuenta + digitosFaltantes + idMoneda;
+		
+		return cvu;
+	}
+	
 	public Cuenta crearCuenta(Cuenta cuenta) {
+		cuenta.setCvu(this.generarCvuCuentaNueva(cuenta));	
+		
 		return this.repositorio.save(cuenta);		
 	}
 
