@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ProgramaClip.ClipMoneyAPI.entidad.Operacion;
 import ProgramaClip.ClipMoneyAPI.entidad.Usuario;
 import ProgramaClip.ClipMoneyAPI.repositorio.UsuarioRepositorio;
 
@@ -57,4 +58,19 @@ public class UsuarioServicio {
 		}
 	}
 
+	public Usuario crearUsuario(Usuario usuario) {
+		return this.repositorio.save(usuario);		
+	}
+
+	public Usuario editarUsuario(Usuario usuario) {
+		return this.repositorio.save(usuario);
+	}
+
+	public void borrarUsuario(Long id) {
+		Optional<Usuario> usuario = this.repositorio.findById(id);
+		
+		if (usuario.isPresent()) {
+			this.repositorio.delete(usuario.get());
+		}
+	}
 }
