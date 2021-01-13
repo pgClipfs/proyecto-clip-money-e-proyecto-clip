@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ProgramaClip.ClipMoneyAPI.entidad.Operacion;
 import ProgramaClip.ClipMoneyAPI.entidad.Usuario;
 import ProgramaClip.ClipMoneyAPI.servicio.UsuarioServicio;
 

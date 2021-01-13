@@ -1,6 +1,5 @@
 package ProgramaClip.ClipMoneyAPI.servicio;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import ProgramaClip.ClipMoneyAPI.entidad.Operacion;
 import ProgramaClip.ClipMoneyAPI.entidad.PlazoFijo;
 import ProgramaClip.ClipMoneyAPI.entidad.Usuario;
 import ProgramaClip.ClipMoneyAPI.repositorio.PlazoFijoRepositorio;
