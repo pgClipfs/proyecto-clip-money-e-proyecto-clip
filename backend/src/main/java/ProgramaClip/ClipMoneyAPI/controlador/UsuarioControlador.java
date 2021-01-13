@@ -30,6 +30,7 @@ public class UsuarioControlador {
 	
 	@PutMapping
 	public Usuario editarUsuario(@RequestBody Usuario usuario) {
+		// TODO: Crear datos usuario
 		return this.servicio.editarUsuario(usuario);
 	}
 	

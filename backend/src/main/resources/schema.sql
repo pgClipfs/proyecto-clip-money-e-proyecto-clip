@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS usuario;
 CREATE TABLE usuario (
 	id BIGINT NOT NULL,
 	nick VARCHAR(50) NOT NULL,
-	password VARCHAR(50) NOT NULL,
+	password VARCHAR(64) NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY nick_usuario_unique (nick)
 );
@@ -96,29 +96,96 @@ DROP TABLE IF EXISTS estado_factura;
 CREATE TABLE estado_factura (
 	id INTEGER NOT NULL,
 	nombre VARCHAR(22) NOT NULL,
-	PRIMARY KEY (nro_cuenta)
+	PRIMARY KEY (id)
 );
 
 DROP TABLE IF EXISTS factura;
  
 CREATE TABLE factura (
 	id BIGINT NOT NULL,
-	nro_cuenta BIGINT NOT NULL,
+	nro_factura BIGINT NOT NULL,
 	monto FLOAT NOT NULL,
 	fecha_primer_vencimiento DATE NOT NULL,
-	fecha_segundo_vencimiento DATE NOT NULL,
-	monto FLOAT NOT NULL,
-	saldo FLOAT NOT NULL,
-	moneda_id INTEGER NOT NULL,
+	fecha_segundo_vencimiento DATE,
+	monto_primer_vencimiento FLOAT NOT NULL,
+	monto_segundo_vencimiento FLOAT,
+	fecha_hora_pago TIMESTAMP,
+	servicio_id BIGINT NOT NULL,
+	nro_cuenta BIGINT,
+	estado_factura_id INTEGER NOT NULL,
 	usuario_id BIGINT NOT NULL,
-	PRIMARY KEY (nro_cuenta),
-	UNIQUE KEY cvu_cuenta_unique (cvu)
+	PRIMARY KEY (id)
 );
 
-ALTER TABLE cuenta
+ALTER TABLE factura
+    ADD FOREIGN KEY (servicio_id) 
+    REFERENCES servicio(id);
+	
+ALTER TABLE factura
+    ADD FOREIGN KEY (nro_cuenta) 
+    REFERENCES cuenta(nro_cuenta);
+
+ALTER TABLE factura
+    ADD FOREIGN KEY (estado_factura_id) 
+    REFERENCES estado_factura(id);
+	
+ALTER TABLE factura
     ADD FOREIGN KEY (usuario_id) 
     REFERENCES usuario(id);
-	
-ALTER TABLE cuenta
+
+DROP TABLE IF EXISTS tipo_plazo_fijo;
+ 
+CREATE TABLE tipo_plazo_fijo (
+	id INT NOT NULL,
+	nombre VARCHAR(50) NOT NULL,
+	plazo_minimo_dias INTEGER NOT NULL,
+	interes_anual FLOAT NOT NULL,
+	monto_minimo FLOAT NOT NULL,
+	moneda_id BIGINT NOT NULL,
+	PRIMARY KEY (id)
+);
+
+ALTER TABLE tipo_plazo_fijo
     ADD FOREIGN KEY (moneda_id) 
     REFERENCES moneda(id);
+
+DROP TABLE IF EXISTS plazo_fijo;
+ 
+CREATE TABLE plazo_fijo (
+	id BIGINT NOT NULL,
+	fecha_hora_creacion TIMESTAMP NOT NULL,
+	fecha_inicio_plazo DATE NOT NULL,
+	fecha_fin_plazo DATE NOT NULL,
+	interes FLOAT NOT NULL,
+	monto FLOAT NOT NULL,
+	nro_cuenta BIGINT NOT NULL,
+	tipo_plazo_fijo_id INTEGER NOT NULL,
+	PRIMARY KEY (id)
+);
+
+ALTER TABLE plazo_fijo
+    ADD FOREIGN KEY (nro_cuenta) 
+    REFERENCES cuenta(nro_cuenta);
+
+ALTER TABLE plazo_fijo
+    ADD FOREIGN KEY (tipo_plazo_fijo_id) 
+    REFERENCES tipo_plazo_fijo(id);
+	
+DROP TABLE IF EXISTS operacion;
+ 
+CREATE TABLE operacion (
+	id BIGINT NOT NULL,
+	monto FLOAT NOT NULL,
+	fecha_hora TIMESTAMP NOT NULL,
+	cuenta_origen BIGINT,
+	cuenta_destino BIGINT NOT NULL,
+	PRIMARY KEY (id)
+);
+
+ALTER TABLE operacion
+    ADD FOREIGN KEY (cuenta_origen) 
+    REFERENCES cuenta(nro_cuenta);
+
+ALTER TABLE operacion
+    ADD FOREIGN KEY (cuenta_destino) 
+    REFERENCES cuenta(nro_cuenta);

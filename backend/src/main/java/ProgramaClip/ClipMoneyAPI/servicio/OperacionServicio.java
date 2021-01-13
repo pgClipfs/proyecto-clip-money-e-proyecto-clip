@@ -47,26 +47,26 @@ public class OperacionServicio {
 		List<Operacion> operaciones = new ArrayList<>();
 		
 		usuario.getCuentas().forEach((c) -> {
-			operaciones.addAll(this.repositorio.findByCuenta(c));
+			operaciones.addAll(this.repositorio.findByCuentaOrigenOrCuentaDestino(c, c));
 		});
 		
 		return operaciones;
 	}
 	
 	public Page<Operacion> getOperacionesPorNroCuenta(Long nroCuenta, Pageable pageable) {
-		return this.repositorio.findByCuenta_NroCuenta(nroCuenta, pageable);
+		return this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuenta(nroCuenta, nroCuenta, pageable);
 	}
 	
 	public Page<Operacion> getOperacionesPorCvuCuenta(String cvuCuenta, Pageable pageable) {
-		return this.repositorio.findByCuenta_Cvu(cvuCuenta, pageable);
+		return this.repositorio.findByCuentaOrigen_CvuOrCuentaDestino_Cvu(cvuCuenta, cvuCuenta, pageable);
 	}
 	
 	public List<Operacion> getUltimasOperacionesCuenta(Long nroCuenta) {
-		return this.repositorio.findLast10ByCuenta_NroCuenta(nroCuenta);
+		return this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuentaOrderByFecha(nroCuenta, nroCuenta).subList(0, 9);
 	}
 
 	public List<Operacion> getOperacionesCuentaEnPlazo(Long nroCuenta, Date fechaInicioPlazo, Date fechaFinPlazo) {
-		List<Operacion> operaciones = this.repositorio.findByCuenta_NroCuenta(nroCuenta);
+		List<Operacion> operaciones = this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuenta(nroCuenta, nroCuenta);
 		List<Operacion> operacionesEnPlazo = new ArrayList<>();
 		
 		operaciones.forEach((o) -> {
@@ -79,7 +79,7 @@ public class OperacionServicio {
 	}
 
 	public List<Operacion> getOperacionesCuentaAntesDeFecha(Long nroCuenta, Date fechaFinPlazo) {
-		List<Operacion> operaciones = this.repositorio.findByCuenta_NroCuenta(nroCuenta);
+		List<Operacion> operaciones = this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuenta(nroCuenta, nroCuenta);
 		List<Operacion> operacionesEnPlazo = new ArrayList<>();
 		
 		operaciones.forEach((o) -> {
@@ -92,7 +92,7 @@ public class OperacionServicio {
 	}
 	
 	public List<Operacion> getOperacionesCuentaDespuesDeFecha(Long nroCuenta, Date fechaInicioPlazo) {
-		List<Operacion> operaciones = this.repositorio.findByCuenta_NroCuenta(nroCuenta);
+		List<Operacion> operaciones = this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuenta(nroCuenta, nroCuenta);
 		List<Operacion> operacionesEnPlazo = new ArrayList<>();
 		
 		operaciones.forEach((o) -> {

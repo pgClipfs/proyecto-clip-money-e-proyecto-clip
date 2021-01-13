@@ -53,7 +53,7 @@ public class OperacionControlador {
 		return this.servicio.getOperacionesPorCvuCuenta(cvuCuenta, pageable);
 	}
 	
-	@GetMapping(params = {"nroCuenta"})
+	@GetMapping(value = "ultimas-operaciones/", params = "nroCuenta")
 	public List<Operacion> getUltimasOperacionesCuenta(Long nroCuenta) {
 		return this.servicio.getUltimasOperacionesCuenta(nroCuenta);
 	}

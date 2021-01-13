@@ -1,105 +1,90 @@
-/* EMOCIÓN GENERAL */
-INSERT INTO emocion_general (id, nombre) VALUES 
-	(hibernate_sequence.nextval, 'Felicidad'),
-	(hibernate_sequence.nextval, 'Ira'),
-	(hibernate_sequence.nextval, 'Miedo'),
-	(hibernate_sequence.nextval, 'Sorpresa'),
-	(hibernate_sequence.nextval, 'Tristeza');
+/* SERVICIO */
+INSERT INTO servicio (id, razon_social, cuit) VALUES 
+	(hibernate_sequence.nextval, 'Cooperativa de Agua, Servicios Públicos y Vivienda', 30710123388),
+	(hibernate_sequence.nextval, 'Empresa Provincial de Energía de Córdoba', 30999027489);
 
 
-/* EMOCIÓN ESPECÍFICA */
-INSERT INTO emocion_especifica (id, nombre) VALUES 
-	(hibernate_sequence.nextval, 'Aburrimiento'),
-	(hibernate_sequence.nextval, 'Agresividad'),
-	(hibernate_sequence.nextval, 'Alegría'),
-	(hibernate_sequence.nextval, 'Amenaza'),
-	(hibernate_sequence.nextval, 'Ansiedad'),
-	(hibernate_sequence.nextval, 'Asombro'),
-	(hibernate_sequence.nextval, 'Comedia'),
-	(hibernate_sequence.nextval, 'Confusión'),
-	(hibernate_sequence.nextval, 'Culpa'),
-	(hibernate_sequence.nextval, 'Decepción'),
-	(hibernate_sequence.nextval, 'Desesperación'),
-	(hibernate_sequence.nextval, 'Distante'),
-	(hibernate_sequence.nextval, 'Esperanzador'),
-	(hibernate_sequence.nextval, 'Exaltación'),
-	(hibernate_sequence.nextval, 'Frustración'),
-	(hibernate_sequence.nextval, 'Horror'),
-	(hibernate_sequence.nextval, 'Incomodidad'),
-	(hibernate_sequence.nextval, 'Inseguridad'),
-	(hibernate_sequence.nextval, 'Locura'),
-	(hibernate_sequence.nextval, 'Melancolía'),
-	(hibernate_sequence.nextval, 'Odio'),
-	(hibernate_sequence.nextval, 'Soledad'),
-	(hibernate_sequence.nextval, 'Tensión'),
-	(hibernate_sequence.nextval, 'Terror'),
-	(hibernate_sequence.nextval, 'Tranquilidad'),
-	(hibernate_sequence.nextval, 'Tristeza'),
-	(hibernate_sequence.nextval, 'Valentía');
+/* USUARIO */
+INSERT INTO usuario (id, nick, password) VALUES 
+	(hibernate_sequence.nextval, 'admin', 'D82494F05D6917BA02F7AAA29689CCB444BB73F20380876CB05D1F37537B7892'),
+	(hibernate_sequence.nextval, 'fmarquez', 'EF797C8118F02DFB649607DD5D3F8C7623048C9C063D532CC95C5ED7A898A64F'),
+	(hibernate_sequence.nextval, 'edert', 'EF797C8118F02DFB649607DD5D3F8C7623048C9C063D532CC95C5ED7A898A64F');
 
-/* EMOCIÓN GENERAL EMOCIÓN ESPECÍFICA */
-INSERT INTO emocion_general_emociones (emocion_general_id, emociones_id) VALUES 
-	(5, 6),
-	(2, 7),
-	(1, 8),
-	(2, 9),
-	(3, 10),
-	(4, 11),
-	(1, 12),
-	(4, 13),
-	(5, 14),
-	(3, 15),
-	(5, 16),
-	(2, 17),
-	(1, 18),
-	(1, 19),
-	(2, 20),
-	(3, 21),
-	(3, 22),
-	(3, 23),
-	(2, 24),
-	(5, 25),
-	(2, 26),
-	(3, 27),
-	(4, 28),
-	(3, 29),
-	(1, 30),
-	(5, 31),
-	(1, 32);
+/* LOCALIDAD */
+INSERT INTO localidad (id, nombre) VALUES 
+	(hibernate_sequence.nextval, 'Villa María'),
+	(hibernate_sequence.nextval, 'Córdoba'),
+	(hibernate_sequence.nextval, 'Morrison'),
+	(hibernate_sequence.nextval, 'Bell Ville'),
+	(hibernate_sequence.nextval, 'Unquillo'),
+	(hibernate_sequence.nextval, 'Justiniano Posse'),
+	(hibernate_sequence.nextval, 'Ramón J. Cárcano'),
+	(hibernate_sequence.nextval, 'Achiras'),
+	(hibernate_sequence.nextval, 'Balnearia'),
+	(hibernate_sequence.nextval, 'Río Primero'),
+	(hibernate_sequence.nextval, 'Río Segundo'),
+	(hibernate_sequence.nextval, 'Río Tercero'),
+	(hibernate_sequence.nextval, 'Río Cuarto'),
+	(hibernate_sequence.nextval, 'Carlos Paz'),
+	(hibernate_sequence.nextval, 'Tío Pujio'),
+	(hibernate_sequence.nextval, 'Oncativo');
 	
-/* LUGAR */
-INSERT INTO lugar (id, nombre) VALUES
-	(hibernate_sequence.nextval, 'Taberna'),
-	(hibernate_sequence.nextval, 'Ciudad'),
-	(hibernate_sequence.nextval, 'Puerto'),
-	(hibernate_sequence.nextval, 'Villa'),
-	(hibernate_sequence.nextval, 'Dungeon'),
-	(hibernate_sequence.nextval, 'Mágico'),
-	(hibernate_sequence.nextval, 'Lluvia'),
-	(hibernate_sequence.nextval, 'General');
+/* DATOS USUARIO */
+INSERT INTO datos_usuario (id, dni, nombres, apellidos, email, telefono, direccion, codigo_postal, fecha_nacimiento, dato_biometrico, usuario_id, localidad_id) VALUES
+	(hibernate_sequence.nextval, 39970427, 'Federico Alejo', 'Marquez', 'fedealejo_007@hotmail.com', '3537 666329', 'Tucumán 1773', '5900', '1996-11-24', NULL, 4, 6),
+	(hibernate_sequence.nextval, 40257895, 'Eder', 'Tassin', 'eder@gmail.com', NULL, NULL, '5900', '1996-11-24', NULL, 5, 6),
+	(hibernate_sequence.nextval, 20941187, 'Federico Alejo', 'Marquez', 'fedealejo007@gmail.com', '3537 666329', 'Tucumán 1773', 'X5109', '1996-11-24', NULL, 3, 11);
 	
-/* CANCION */
-INSERT INTO cancion (id, extras, link, nombre, origen, emocion_id, lugar_id) VALUES
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=olmhqonMXBo', 'Lament of the Angel', 'The Binding of Isaac: Wrath of the Lamb OST', 16, 37),
-	(hibernate_sequence.nextval, 'Moksha Ramas', 'https://www.youtube.com/watch?v=Isl-EY2dn1Y', 'Phobos Anomaly (Cover)', 'Doom OST', 24, 37),
-	(hibernate_sequence.nextval, 'Guerra/Batalla', 'https://www.youtube.com/watch?v=k4zh8RwhjZ0', 'The Beast', 'Sicario OST', 29, 37),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=wEWF2xh5E8s', 'Sadness and Sorrow', 'Naruto OST', 14, 39),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=v712NiVK5uY', 'Waterfall', 'Undertale OST', 25, 39),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=OQ-kyWlislA', 'We''re Hungry Because we''re Alive', 'Kono Subarashi ni Shukufuku Wo! OST', 12, 33),
-	(hibernate_sequence.nextval, 'Manos', 'https://www.youtube.com/watch?v=ClXyUO3BJuk', 'Kyouchou', 'Fate/Stay Night OST', 21, 40),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=eqispO2Bi2k', 'Enter Hallownest', 'Hollow Knight OST', 11, 38),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=Ctuo3ws3EKs', 'Prologue', 'Celeste OST', 30, 38),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=WRAlNeOHI-g', 'The City Gates', 'Skyrim V OST', 11, 34),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=_PnxVpdL-lE', 'The Prestigious Mask', 'Nier OST', 30, 34),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=5k6kg---YKg', 'Naru, Embracing the Light', 'Ori and the Blind Forest OST', 8, 40),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=mmZGrvAvPZM', 'Ancient Stones', 'Skyrim V OST', 30, 34),
-	(hibernate_sequence.nextval, 'La tragedia del Rey Dragonborn', 'https://www.youtube.com/watch?v=V1eA4MK6VXw', 'Thornfelt Swamp', 'Ori and the Blind Forest OST', 16, 40),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=pQkajyGKvUU', 'Dung Defender', 'Hollow Knight OST', 32, 40),
-	(hibernate_sequence.nextval, 'Ending', 'https://www.youtube.com/watch?v=jWtekMB-GTU', 'Tidus Theme', 'Final Fantasy X OST', 18, 40),
-	(hibernate_sequence.nextval, 'Fuego y llamas', 'https://www.youtube.com/watch?v=dlYZAbSpi6s', 'Igo Soccer bu ~Norashiai~', 'Nichijou OST', 28, 40),
-	(hibernate_sequence.nextval, 'Tiamat', 'https://www.youtube.com/watch?v=khzyR_vtelA', 'Hymn of the Fayth (Cover)', 'Final Fantasy X OST', 17, 38),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=q0z08OpmEPc', 'Making of a Cyborg', 'Ghost in the Shell OST', 17, 38),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=5nz6XwMhp3U', 'First Step', 'Interstellar OST', 25, 38),
-	(hibernate_sequence.nextval, '', 'https://www.youtube.com/watch?v=oIIuwtDL_ok', 'Queen''s Gardens', 'Hollow Knight OST', 30, 38),
-	(hibernate_sequence.nextval, 'Boss fight', 'https://www.youtube.com/watch?v=FT3sXT9x9CU', 'Ascension', 'The Binding of Isaac: Rebirth OST', 9, 37),
-	(hibernate_sequence.nextval, 'Pelea contra Tiamat', 'https://www.youtube.com/watch?v=0RMnjL6X2gg', 'My Innermost Apocalypse', 'The Binding of Isaac: Wrath of the Lamb OST', 24, 37);
+/* MONEDA */
+INSERT INTO moneda (id, nombre, valor_dolares) VALUES
+	(hibernate_sequence.nextval, 'Peso Argentino', 0.013),
+	(hibernate_sequence.nextval, 'Dólar', 1),
+	(hibernate_sequence.nextval, 'Bitcoin', 12796.8);
+	
+/* CUENTA */
+INSERT INTO cuenta (nro_cuenta, cvu, saldo, moneda_id, usuario_id) VALUES
+	(hibernate_sequence.nextval, '2800000000160990597625', 0, 25, 4),
+	(hibernate_sequence.nextval, '2900000000161000832625', 75000, 25, 5),
+	(hibernate_sequence.nextval, '3000000000161035201126', 354.75, 26, 5),
+	(hibernate_sequence.nextval, '3100000000161035205727', 150, 27, 4);
+
+/* ESTADO FACTURA */
+INSERT INTO estado_factura (id, nombre) VALUES
+	(hibernate_sequence.nextval, 'Paga'),
+	(hibernate_sequence.nextval, 'Impaga'),
+	(hibernate_sequence.nextval, 'Primer Vencimiento'),
+	(hibernate_sequence.nextval, 'Segundo Vencimiento');
+	
+/* FACTURA */
+INSERT INTO factura (id, nro_factura, monto, fecha_primer_vencimiento, fecha_segundo_vencimiento, monto_primer_vencimiento, monto_segundo_vencimiento, fecha_hora_pago, servicio_id, nro_cuenta, estado_factura_id, usuario_id) VALUES
+	(hibernate_sequence.nextval, 123455, 1366.25, '2020-11-25', '2020-12-07', 1375.44, 1401.15, CURRENT_TIMESTAMP, 2, 28, 32, 4),
+	(hibernate_sequence.nextval, 123456, 1366.25, '2020-12-25', '2021-01-07', 1375.44, 1401.15, NULL, 2, NULL, 34, 4),
+	(hibernate_sequence.nextval, 123457, 1366.25, '2021-01-25', '2021-02-07', 1375.44, 1401.15, NULL, 2, NULL, 33, 4),
+	(hibernate_sequence.nextval, 23456, 1000, '2021-02-10', NULL, 1100, NULL, NULL, 1, NULL, 33, 4),
+	(hibernate_sequence.nextval, 23457, 1000, '2021-03-10', NULL, 1100, NULL, NULL, 1, NULL, 33, 4),
+	(hibernate_sequence.nextval, 23458, 1000, '2021-04-10', NULL, 1100, NULL, NULL, 1, NULL, 33, 4),
+	(hibernate_sequence.nextval, 233459, 1366.25, '2020-11-25', '2020-12-07', 1375.44, 1401.15, CURRENT_TIMESTAMP, 2, 29, 32, 5),
+	(hibernate_sequence.nextval, 233460, 1366.25, '2020-12-25', '2021-01-07', 1375.44, 1401.15, CURRENT_TIMESTAMP, 2, 29, 32, 5),
+	(hibernate_sequence.nextval, 233461, 1366.25, '2021-01-25', '2021-02-07', 1375.44, 1401.15, CURRENT_TIMESTAMP, 2, 29, 32, 5),
+	(hibernate_sequence.nextval, 55681, 1000, '2021-02-10', NULL, 1100, NULL, CURRENT_TIMESTAMP, 1, 29, 32, 5),
+	(hibernate_sequence.nextval, 55682, 1000, '2021-03-10', NULL, 1100, NULL, CURRENT_TIMESTAMP, 1, 29, 32, 5),
+	(hibernate_sequence.nextval, 55683, 1000, '2021-04-10', NULL, 1100, NULL, NULL, 1, NULL, 33, 5);
+	
+/* TIPO PLAZO FIJO */
+INSERT INTO tipo_plazo_fijo (id, nombre, plazo_minimo_dias, interes_anual, monto_minimo, moneda_id) VALUES
+	(hibernate_sequence.nextval, 'Tradicional en pesos', 30, 0.33, 1000, 25),
+	(hibernate_sequence.nextval, 'UVA', 90, 0.29, 1000, 25),
+	(hibernate_sequence.nextval, 'UVI', 90, 0.35, 5000, 25),
+	(hibernate_sequence.nextval, 'Tradicional en dólares', 30, 0.027, 500, 26);
+	
+/* PLAZO FIJO */
+INSERT INTO plazo_fijo (id, fecha_hora_creacion, fecha_inicio_plazo, fecha_fin_plazo, interes, monto, nro_cuenta, tipo_plazo_fijo_id) VALUES
+	(hibernate_sequence.nextval, CURRENT_TIMESTAMP, '2020-10-21', '2021-02-22', 0.33, 7000, 28, 48);
+
+/* OPERACION */
+INSERT INTO operacion (id, monto, fecha_hora, cuenta_origen, cuenta_destino) VALUES	
+	(hibernate_sequence.nextval, 15000, CURRENT_TIMESTAMP, 28, 29),
+	(hibernate_sequence.nextval, 60000, CURRENT_TIMESTAMP, NULL, 29),
+	(hibernate_sequence.nextval, 354.75, CURRENT_TIMESTAMP, NULL, 30),
+	(hibernate_sequence.nextval, 300, CURRENT_TIMESTAMP, NULL, 31),
+	(hibernate_sequence.nextval, -150, CURRENT_TIMESTAMP, NULL, 31);
