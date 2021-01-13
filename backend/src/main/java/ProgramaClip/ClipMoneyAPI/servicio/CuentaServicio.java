@@ -24,10 +24,12 @@ public class CuentaServicio {
 		return this.repositorio.findAll(pageable);
 	}
 	
+	/*
 	public Optional<Cuenta> getCuentaPorId(Long id) {
 		return this.repositorio.findById(id);
 	}
-
+	 */
+	
 	public Optional<Cuenta> getCuentaPorCvu(String cvu) {
 		return this.repositorio.findByCvu(cvu);
 	}
@@ -89,8 +91,10 @@ public class CuentaServicio {
 	}
 
 	public void borrarCuenta(Long id) {
-		Cuenta cuenta = this.getCuentaPorId(id).get();
+		Optional<Cuenta> cuenta = this.repositorio.findById(id);
 		
-		this.repositorio.delete(cuenta);
+		if (cuenta.isPresent()) {
+			this.repositorio.delete(cuenta.get());
+		}
 	}
 }

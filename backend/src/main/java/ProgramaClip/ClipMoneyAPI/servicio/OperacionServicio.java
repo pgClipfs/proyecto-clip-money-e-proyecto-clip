@@ -3,12 +3,14 @@ package ProgramaClip.ClipMoneyAPI.servicio;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import ProgramaClip.ClipMoneyAPI.entidad.Cuenta;
 import ProgramaClip.ClipMoneyAPI.entidad.Operacion;
 import ProgramaClip.ClipMoneyAPI.entidad.Usuario;
 import ProgramaClip.ClipMoneyAPI.repositorio.OperacionRepositorio;
@@ -101,5 +103,21 @@ public class OperacionServicio {
 		});
 		
 		return operacionesEnPlazo;
+	}
+	
+	public Operacion crearOperacion(Operacion operacion) {
+		return this.repositorio.save(operacion);		
+	}
+
+	public Operacion editarOperacion(Operacion operacion) {
+		return this.repositorio.save(operacion);
+	}
+
+	public void borrarOperacion(Long id) {
+		Optional<Operacion> operacion = this.repositorio.findById(id);
+		
+		if (operacion.isPresent()) {
+			this.repositorio.delete(operacion.get());
+		}
 	}
 }

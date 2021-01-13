@@ -75,7 +75,7 @@ public class CuentaControlador {
 	}
 	
 	@PutMapping
-	public Cuenta  editarCuenta(@RequestBody Cuenta cuenta) {
+	public Cuenta editarCuenta(@RequestBody Cuenta cuenta) {
 		return this.servicio.editarCuenta(cuenta);
 	}
 	
