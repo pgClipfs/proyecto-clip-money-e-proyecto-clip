@@ -30,7 +30,7 @@ public class UsuarioControlador {
 	}
 	
 	@PutMapping
-	public Operacion editarUsuario(@RequestBody Usuario usuario) {
+	public Usuario editarUsuario(@RequestBody Usuario usuario) {
 		return this.servicio.editarUsuario(usuario);
 	}
 	
