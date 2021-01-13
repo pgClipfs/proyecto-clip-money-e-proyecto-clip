@@ -3,12 +3,14 @@ package ProgramaClip.ClipMoneyAPI.servicio;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import ProgramaClip.ClipMoneyAPI.entidad.Operacion;
 import ProgramaClip.ClipMoneyAPI.entidad.PlazoFijo;
 import ProgramaClip.ClipMoneyAPI.entidad.Usuario;
 import ProgramaClip.ClipMoneyAPI.repositorio.PlazoFijoRepositorio;
@@ -50,5 +52,21 @@ public class PlazoFijoServicio {
 		});
 		
 		return plazosFijos;
+	}
+	
+	public PlazoFijo crearPlazoFijo(PlazoFijo plazoFijo) {
+		return this.repositorio.save(plazoFijo);		
+	}
+
+	public PlazoFijo editarPlazoFijo(PlazoFijo plazoFijo) {
+		return this.repositorio.save(plazoFijo);
+	}
+
+	public void borrarPlazoFijo(Long id) {
+		Optional<PlazoFijo> plazoFijo = this.repositorio.findById(id);
+		
+		if (plazoFijo.isPresent()) {
+			this.repositorio.delete(plazoFijo.get());
+		}
 	}
 }
