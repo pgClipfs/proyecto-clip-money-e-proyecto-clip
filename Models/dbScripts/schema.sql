@@ -12,124 +12,124 @@ DROP TABLE IF EXISTS [dbo].[Localidades];
 DROP TABLE IF EXISTS [dbo].[Servicios];
  
 CREATE TABLE [dbo].[Servicios] (
-	[id] BIGINT IDENTITY (1, 1) NOT NULL,
-	[razonSocial] NVARCHAR(100) NOT NULL,
-	[cuit] BIGINT NOT NULL,
-	CONSTRAINT [PK_dbo.Servicios] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [IX_dbo.Servicios_cuit] UNIQUE([cuit])
+	[Id] BIGINT IDENTITY (1, 1) NOT NULL,
+	[RazonSocial] NVARCHAR(100) NOT NULL,
+	[Cuit] BIGINT NOT NULL,
+	CONSTRAINT [PK_dbo.Servicios] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [IX_dbo.Servicios_Cuit] UNIQUE([Cuit])
 );
  
 CREATE TABLE [dbo].[Localidades] (
-	[id] INT IDENTITY (1, 1) NOT NULL,
-	[nombre] NVARCHAR(50) NOT NULL,
-	CONSTRAINT [PK_dbo.Localidades] PRIMARY KEY CLUSTERED ([id] ASC)
+	[Id] INT IDENTITY (1, 1) NOT NULL,
+	[Nombre] NVARCHAR(50) NOT NULL,
+	CONSTRAINT [PK_dbo.Localidades] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
  
 CREATE TABLE [dbo].[DatosUsuarios] (
-	[id] BIGINT IDENTITY(1, 1) NOT NULL,
-	[dni] INT NOT NULL,
-	[nombres] NVARCHAR(50) NOT NULL,
-	[apellidos] NVARCHAR(50) NOT NULL,
-	[email] NVARCHAR(50) NOT NULL,
-	[telefono] NVARCHAR(50) NULL,
-	[direccion] NVARCHAR(50) NULL,
-	[codigoPostal] NVARCHAR(10) NOT NULL,
-	[fechaNacimiento] DATE NOT NULL,
-	[datoBiometrico] NVARCHAR(50) NULL,
-	[localidadId] INT NOT NULL,
-	CONSTRAINT [PK_dbo.DatosUsuarios] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [FK_dbo.DatosUsuarios_dbo.Localidades_localidadId] FOREIGN KEY ([localidadId]) REFERENCES [dbo].[Localidades] ([id]) ON DELETE NO ACTION,
-	CONSTRAINT [IX_dbo.DatosUsuarios_email] UNIQUE([email]),
-	CONSTRAINT [IX_dbo.DatosUsuarios_dni] UNIQUE([dni])
+	[Id] BIGINT IDENTITY(1, 1) NOT NULL,
+	[Dni] INT NOT NULL,
+	[Nombres] NVARCHAR(50) NOT NULL,
+	[Apellidos] NVARCHAR(50) NOT NULL,
+	[Email] NVARCHAR(50) NOT NULL,
+	[Telefono] NVARCHAR(50) NULL,
+	[Direccion] NVARCHAR(50) NULL,
+	[CodigoPostal] NVARCHAR(10) NOT NULL,
+	[FechaNacimiento] DATE NOT NULL,
+	[DatoBiometrico] NVARCHAR(50) NULL,
+	[LocalidadId] INT NOT NULL,
+	CONSTRAINT [PK_dbo.DatosUsuarios] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_dbo.DatosUsuarios_dbo.Localidades_LocalidadId] FOREIGN KEY ([LocalidadId]) REFERENCES [dbo].[Localidades] ([Id]) ON DELETE NO ACTION,
+	CONSTRAINT [IX_dbo.DatosUsuarios_Email] UNIQUE([email]),
+	CONSTRAINT [IX_dbo.DatosUsuarios_Dni] UNIQUE([dni])
 );
  
 CREATE TABLE [dbo].[Usuarios] (
-	[id] BIGINT IDENTITY(1, 1) NOT NULL,
-	[nick] NVARCHAR(50) NOT NULL,
-	[contrasena] NVARCHAR(64) NOT NULL,
-	[datosUsuarioId] BIGINT NOT NULL,
-	CONSTRAINT [PK_dbo.Usuarios] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [FK_dbo.Usuarios_dbo.DatosUsuarios_datosUsuarioId] FOREIGN KEY ([datosUsuarioId]) REFERENCES [dbo].[DatosUsuarios] ([id]) ON DELETE CASCADE,
-	CONSTRAINT [IX_dbo.Usuarios_nick] UNIQUE([nick])
+	[Id] BIGINT IDENTITY(1, 1) NOT NULL,
+	[Nick] NVARCHAR(50) NOT NULL,
+	[Contrasena] NVARCHAR(64) NOT NULL,
+	[DatosUsuarioId] BIGINT NOT NULL,
+	CONSTRAINT [PK_dbo.Usuarios] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_dbo.Usuarios_dbo.DatosUsuarios_DatosUsuarioId] FOREIGN KEY ([DatosUsuarioId]) REFERENCES [dbo].[DatosUsuarios] ([Id]) ON DELETE CASCADE,
+	CONSTRAINT [IX_dbo.Usuarios_Nick] UNIQUE([Nick])
 );
  
 CREATE TABLE [dbo].[Monedas] (
-	[id] INT IDENTITY(1, 1) NOT NULL,
-	[nombre] NVARCHAR(50) NOT NULL,
-	[valorDolares] FLOAT NOT NULL,
-	CONSTRAINT [PK_dbo.Monedas] PRIMARY KEY CLUSTERED ([id] ASC)
+	[Id] INT IDENTITY(1, 1) NOT NULL,
+	[Nombre] NVARCHAR(50) NOT NULL,
+	[ValorDolares] FLOAT NOT NULL,
+	CONSTRAINT [PK_dbo.Monedas] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
  
 CREATE TABLE [dbo].[Cuentas] (
-	[nroCuenta] BIGINT IDENTITY(1, 1) NOT NULL,
-	[cvu] NVARCHAR(22) NOT NULL,
-	[saldo] FLOAT NOT NULL,
-	[monedaId] INT NOT NULL,
-	[usuarioId] BIGINT NOT NULL,
-	CONSTRAINT [PK_dbo.Cuentas] PRIMARY KEY CLUSTERED ([nroCuenta] ASC),
-	CONSTRAINT [FK_dbo.Cuentas_dbo.Monedas_monedaId] FOREIGN KEY ([monedaId]) REFERENCES [dbo].[Monedas] ([id]) ON DELETE NO ACTION,
-	CONSTRAINT [FK_dbo.Cuentas_dbo.Usuarios_usuarioId] FOREIGN KEY ([usuarioId]) REFERENCES [dbo].[Usuarios] ([id]) ON DELETE CASCADE,
-	CONSTRAINT [IX_dbo.Cuentas_cvu] UNIQUE([cvu])
+	[NroCuenta] BIGINT IDENTITY(1, 1) NOT NULL,
+	[Cvu] NVARCHAR(22) NOT NULL,
+	[Saldo] FLOAT NOT NULL,
+	[MonedaId] INT NOT NULL,
+	[UsuarioId] BIGINT NOT NULL,
+	CONSTRAINT [PK_dbo.Cuentas] PRIMARY KEY CLUSTERED ([NroCuenta] ASC),
+	CONSTRAINT [FK_dbo.Cuentas_dbo.Monedas_MonedaId] FOREIGN KEY ([MonedaId]) REFERENCES [dbo].[Monedas] ([Id]) ON DELETE NO ACTION,
+	CONSTRAINT [FK_dbo.Cuentas_dbo.Usuarios_UsuarioId] FOREIGN KEY ([UsuarioId]) REFERENCES [dbo].[Usuarios] ([Id]) ON DELETE CASCADE,
+	CONSTRAINT [IX_dbo.Cuentas_Cvu] UNIQUE([Cvu])
 );
  
 CREATE TABLE [dbo].[EstadosFacturas] (
-	[id] INT IDENTITY(1, 1) NOT NULL,
-	[nombre] NVARCHAR(50) NOT NULL,
-	CONSTRAINT [PK_dbo.EstadosFacturas] PRIMARY KEY CLUSTERED ([id] ASC)
+	[Id] INT IDENTITY(1, 1) NOT NULL,
+	[Nombre] NVARCHAR(50) NOT NULL,
+	CONSTRAINT [PK_dbo.EstadosFacturas] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
  
 CREATE TABLE [dbo].[Facturas] (
-	[id] BIGINT IDENTITY(1, 1) NOT NULL,
-	[nroFactura] BIGINT NOT NULL,
-	[monto] FLOAT NOT NULL,
-	[fechaPrimerVencimiento] DATE NOT NULL,
-	[fechaSegundoVencimiento] DATE NULL,
-	[montoPrimerVencimiento] FLOAT NOT NULL,
-	[montoSegundoVencimiento] FLOAT NULL,
-	[fechaHoraPago] DATETIME NULL,
-	[servicioId] BIGINT NOT NULL,
-	[cuentaPagoNroCuenta] BIGINT NULL,
-	[estadoFacturaId] INT NOT NULL,
-	[usuarioId] BIGINT NOT NULL,
-	CONSTRAINT [PK_dbo.Facturas] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [FK_dbo.Facturas_dbo.Servicios_servicioId] FOREIGN KEY ([servicioId]) REFERENCES [dbo].[Servicios] ([id]) ON DELETE CASCADE,
-	CONSTRAINT [FK_dbo.Facturas_dbo.Cuentas_cuentaPagoNroCuenta] FOREIGN KEY ([cuentaPagoNroCuenta]) REFERENCES [dbo].[Cuentas] ([nroCuenta]) ON DELETE NO ACTION,
-	CONSTRAINT [FK_dbo.Facturas_dbo.EstadosFacturas_estadoFacturaId] FOREIGN KEY ([estadoFacturaId]) REFERENCES [dbo].[EstadosFacturas] ([id]) ON DELETE NO ACTION,
-	CONSTRAINT [FK_dbo.Facturas_dbo.Usuarios_usuarioId] FOREIGN KEY ([usuarioId]) REFERENCES [dbo].[Usuarios] ([id]) ON DELETE NO ACTION
+	[Id] BIGINT IDENTITY(1, 1) NOT NULL,
+	[NroFactura] BIGINT NOT NULL,
+	[Monto] FLOAT NOT NULL,
+	[FechaPrimerVencimiento] DATE NOT NULL,
+	[FechaSegundoVencimiento] DATE NULL,
+	[MontoPrimerVencimiento] FLOAT NOT NULL,
+	[MontoSegundoVencimiento] FLOAT NULL,
+	[FechaHoraPago] DATETIME NULL,
+	[ServicioId] BIGINT NOT NULL,
+	[CuentaPagoNroCuenta] BIGINT NULL,
+	[EstadoFacturaId] INT NOT NULL,
+	[UsuarioId] BIGINT NOT NULL,
+	CONSTRAINT [PK_dbo.Facturas] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_dbo.Facturas_dbo.Servicios_ServicioId] FOREIGN KEY ([servicioId]) REFERENCES [dbo].[Servicios] ([Id]) ON DELETE CASCADE,
+	CONSTRAINT [FK_dbo.Facturas_dbo.Cuentas_CuentaPagoNroCuenta] FOREIGN KEY ([CuentaPagoNroCuenta]) REFERENCES [dbo].[Cuentas] ([NroCuenta]) ON DELETE NO ACTION,
+	CONSTRAINT [FK_dbo.Facturas_dbo.EstadosFacturas_EstadoFacturaId] FOREIGN KEY ([EstadoFacturaId]) REFERENCES [dbo].[EstadosFacturas] ([Id]) ON DELETE NO ACTION,
+	CONSTRAINT [FK_dbo.Facturas_dbo.Usuarios_UsuarioId] FOREIGN KEY ([UsuarioId]) REFERENCES [dbo].[Usuarios] ([Id]) ON DELETE NO ACTION
 );
  
 CREATE TABLE [dbo].[TiposPlazosFijos] (
-	[id] INT IDENTITY(1, 1) NOT NULL,
-	[nombre] NVARCHAR(50) NOT NULL,
-	[plazoMinimoDias] INT NOT NULL,
-	[interesAnual] FLOAT NOT NULL,
-	[montoMinimo] FLOAT NOT NULL,
-	[monedaId] INT NOT NULL,
-	CONSTRAINT [PK_dbo.TiposPlazosFijos] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [FK_dbo.TiposPlazosFijos_dbo.Monedas_monedaId] FOREIGN KEY ([monedaId]) REFERENCES [dbo].[Monedas] ([id]) ON DELETE NO ACTION
+	[Id] INT IDENTITY(1, 1) NOT NULL,
+	[Nombre] NVARCHAR(50) NOT NULL,
+	[PlazoMinimoDias] INT NOT NULL,
+	[InteresAnual] FLOAT NOT NULL,
+	[MontoMinimo] FLOAT NOT NULL,
+	[MonedaId] INT NOT NULL,
+	CONSTRAINT [PK_dbo.TiposPlazosFijos] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_dbo.TiposPlazosFijos_dbo.Monedas_MonedaId] FOREIGN KEY ([MonedaId]) REFERENCES [dbo].[Monedas] ([Id]) ON DELETE NO ACTION
 );
  
 CREATE TABLE [dbo].[PlazosFijos] (
-	[id] BIGINT IDENTITY(1, 1) NOT NULL,
-	[fechaHoraCreacion] TIMESTAMP NOT NULL,
-	[fechaInicioPlazo] DATE NOT NULL,
-	[fechaFinPlazo] DATE NOT NULL,
-	[interesAnual] FLOAT NOT NULL,
-	[monto] FLOAT NOT NULL,
-	[cuentaNroCuenta] BIGINT NOT NULL,
-	[tipoPlazoFijoId] INT NOT NULL,
-	CONSTRAINT [PK_dbo.PlazosFijos] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [FK_dbo.PlazosFijos_dbo.Cuentas_cuentaNroCuenta] FOREIGN KEY ([cuentaNroCuenta]) REFERENCES [dbo].[Cuentas] ([nroCuenta]) ON DELETE CASCADE,
-	CONSTRAINT [FK_dbo.PlazosFijos_dbo.TiposPlazosFijos_tipoPlazoFijoId] FOREIGN KEY ([tipoPlazoFijoId]) REFERENCES [dbo].[TiposPlazosFijos] ([id]) ON DELETE NO ACTION
+	[Id] BIGINT IDENTITY(1, 1) NOT NULL,
+	[FechaHoraCreacion] TIMESTAMP NOT NULL,
+	[FechaInicioPlazo] DATE NOT NULL,
+	[FechaFinPlazo] DATE NOT NULL,
+	[InteresAnual] FLOAT NOT NULL,
+	[Monto] FLOAT NOT NULL,
+	[CuentaNroCuenta] BIGINT NOT NULL,
+	[TipoPlazoFijoId] INT NOT NULL,
+	CONSTRAINT [PK_dbo.PlazosFijos] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_dbo.PlazosFijos_dbo.Cuentas_CuentaNroCuenta] FOREIGN KEY ([CuentaNroCuenta]) REFERENCES [dbo].[Cuentas] ([NroCuenta]) ON DELETE CASCADE,
+	CONSTRAINT [FK_dbo.PlazosFijos_dbo.TiposPlazosFijos_TipoPlazoFijoId] FOREIGN KEY ([TipoPlazoFijoId]) REFERENCES [dbo].[TiposPlazosFijos] ([Id]) ON DELETE NO ACTION
 );
  
 CREATE TABLE [dbo].[Operaciones] (
-	[id] BIGINT IDENTITY(1, 1) NOT NULL,
-	[monto] FLOAT NOT NULL,
-	[fechaHora] TIMESTAMP NOT NULL,
-	[cuentaOrigenNroCuenta] BIGINT NULL,
-	[cuentaDestinoNroCuenta] BIGINT NOT NULL,
-	CONSTRAINT [PK_dbo.Operaciones] PRIMARY KEY CLUSTERED ([id] ASC),
-	CONSTRAINT [FK_dbo.Operaciones_dbo.Cuentas_cuentaOrigenNroCuenta] FOREIGN KEY ([cuentaOrigenNroCuenta]) REFERENCES [dbo].[Cuentas] ([nroCuenta]) ON DELETE SET NULL,
-	CONSTRAINT [FK_dbo.Operaciones_dbo.Cuentas_cuentaDestinoNroCuenta] FOREIGN KEY ([cuentaDestinoNroCuenta]) REFERENCES [dbo].[Cuentas] ([nroCuenta]) ON DELETE NO ACTION
+	[Id] BIGINT IDENTITY(1, 1) NOT NULL,
+	[Monto] FLOAT NOT NULL,
+	[FechaHora] TIMESTAMP NOT NULL,
+	[CuentaOrigenNroCuenta] BIGINT NULL,
+	[CuentaDestinoNroCuenta] BIGINT NOT NULL,
+	CONSTRAINT [PK_dbo.Operaciones] PRIMARY KEY CLUSTERED ([Id] ASC),
+	CONSTRAINT [FK_dbo.Operaciones_dbo.Cuentas_CuentaOrigenNroCuenta] FOREIGN KEY ([CuentaOrigenNroCuenta]) REFERENCES [dbo].[Cuentas] ([NroCuenta]) ON DELETE SET NULL,
+	CONSTRAINT [FK_dbo.Operaciones_dbo.Cuentas_CuentaDestinoNroCuenta] FOREIGN KEY ([CuentaDestinoNroCuenta]) REFERENCES [dbo].[Cuentas] ([NroCuenta]) ON DELETE NO ACTION
 );

@@ -1,34 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class Usuario
-    {
-        private long id;
-        private string nick;
-        private string contrasena;
-        private DatosUsuario datosUsuario;
-        private List<Factura> facturas;
-        private List<Cuenta> cuentas;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-        public Usuario(long id, string nick, string contrasena, DatosUsuario datosUsuario, List<Factura> facturas, List<Cuenta> cuentas)
+    public partial class Usuario
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuario()
         {
-            this.Id = id;
-            this.Nick = nick;
-            this.Contrasena = contrasena;
-            this.DatosUsuario = datosUsuario;
-            this.Facturas = facturas;
-            this.Cuentas = cuentas;
+            Cuentas = new HashSet<Cuenta>();
+            Facturas = new HashSet<Factura>();
         }
 
-        public long Id { get => id; set => id = value; }
-        public string Nick { get => nick; set => nick = value; }
-        public string Contrasena { get => contrasena; set => contrasena = value; }
-        public DatosUsuario DatosUsuario { get => datosUsuario; set => datosUsuario = value; }
-        public List<Factura> Facturas { get => facturas; set => facturas = value; }
-        public List<Cuenta> Cuentas { get => cuentas; set => cuentas = value; }
+        public long Id { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Nick { get; set; }
+
+        [Required]
+        [StringLength(64)]
+        public string Contrasena { get; set; }
+
+        public long DatosUsuarioId { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cuenta> Cuentas { get; set; }
+
+        public virtual DatosUsuario DatosUsuario { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Factura> Facturas { get; set; }
     }
 }

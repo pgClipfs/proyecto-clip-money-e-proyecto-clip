@@ -1,43 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class DatosUsuario
-    {
-        private long id;
-        private int dni;
-        private string nombres;
-        private string apellidos;
-        private string email;
-        private string telefono;
-        private string direccion;
-        private string codigoPostal;
-        private Localidad localidad;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-        public DatosUsuario(long id, int dni, string nombres, string apellidos, string email, string telefono, string direccion, string codigoPostal, Localidad localidad)
+    public partial class DatosUsuario
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DatosUsuario()
         {
-            this.Id = id;
-            this.Dni = dni;
-            this.Nombres = nombres;
-            this.Apellidos = apellidos;
-            this.Email = email;
-            this.Telefono = telefono;
-            this.Direccion = direccion;
-            this.CodigoPostal = codigoPostal;
-            this.Localidad = localidad;
+            Usuarios = new HashSet<Usuario>();
         }
 
-        public long Id { get => id; set => id = value; }
-        public int Dni { get => dni; set => dni = value; }
-        public string Nombres { get => nombres; set => nombres = value; }
-        public string Apellidos { get => apellidos; set => apellidos = value; }
-        public string Email { get => email; set => email = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
-        public string Direccion { get => direccion; set => direccion = value; }
-        public string CodigoPostal { get => codigoPostal; set => codigoPostal = value; }
-        public Localidad Localidad { get => localidad; set => localidad = value; }
+        public long Id { get; set; }
+
+        public int Dni { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Nombres { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Apellidos { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Email { get; set; }
+
+        [StringLength(50)]
+        public string Telefono { get; set; }
+
+        [StringLength(50)]
+        public string Direccion { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string CodigoPostal { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime FechaNacimiento { get; set; }
+
+        [StringLength(50)]
+        public string DatoBiometrico { get; set; }
+
+        public int LocalidadId { get; set; }
+
+        public virtual Localidad Localidad { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

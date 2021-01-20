@@ -1,28 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class Cuenta
-    {
-        private long nroCuenta;
-        private string cvu;
-        private float saldo;
-        private Moneda moneda;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-        public Cuenta(long nroCuenta, string cvu, float saldo, Moneda moneda)
+    public partial class Cuenta
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cuenta()
         {
-            this.NroCuenta = nroCuenta;
-            this.Cvu = cvu;
-            this.Saldo = saldo;
-            this.Moneda = moneda;
+            Facturas = new HashSet<Factura>();
+            OperacionesOrigen = new HashSet<Operacion>();
+            OperacionesDestino = new HashSet<Operacion>();
+            PlazosFijos = new HashSet<PlazoFijo>();
         }
 
-        public long NroCuenta { get => nroCuenta; set => nroCuenta = value; }
-        public string Cvu { get => cvu; set => cvu = value; }
-        public float Saldo { get => saldo; set => saldo = value; }
-        public Moneda Moneda { get => moneda; set => moneda = value; }
+        [Key]
+        public long NroCuenta { get; set; }
+
+        [Required]
+        [StringLength(22)]
+        public string Cvu { get; set; }
+
+        public double Saldo { get; set; }
+
+        public int MonedaId { get; set; }
+
+        public long UsuarioId { get; set; }
+
+        public virtual Moneda Moneda { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Factura> Facturas { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Operacion> OperacionesOrigen { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Operacion> OperacionesDestino { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlazoFijo> PlazosFijos { get; set; }
     }
 }

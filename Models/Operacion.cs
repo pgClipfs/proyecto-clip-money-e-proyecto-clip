@@ -1,31 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class Operacion
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class Operacion
     {
-        private long id;
-        private float monto;
-        private DateTime fechaHora;
-        private Cuenta cuentaOrigen;
-        private Cuenta cuentaDestino;
+        public long Id { get; set; }
 
-        public Operacion(long id, float monto, DateTime fechaHora, Cuenta cuentaOrigen, Cuenta cuentaDestino)
-        {
-            this.Id = id;
-            this.Monto = monto;
-            this.FechaHora = fechaHora;
-            this.CuentaOrigen = cuentaOrigen;
-            this.CuentaDestino = cuentaDestino;
-        }
+        public double Monto { get; set; }
 
-        public long Id { get => id; set => id = value; }
-        public float Monto { get => monto; set => monto = value; }
-        public DateTime FechaHora { get => fechaHora; set => fechaHora = value; }
-        public Cuenta CuentaOrigen { get => cuentaOrigen; set => cuentaOrigen = value; }
-        public Cuenta CuentaDestino { get => cuentaDestino; set => cuentaDestino = value; }
+        [Column(TypeName = "timestamp")]
+        [MaxLength(8)]
+        [Timestamp]
+        public byte[] FechaHora { get; set; }
+
+        public long? CuentaOrigenNroCuenta { get; set; }
+
+        public long CuentaDestinoNroCuenta { get; set; }
+
+        public virtual Cuenta CuentaOrigen { get; set; }
+
+        public virtual Cuenta CuentaDestino { get; set; }
     }
 }

@@ -1,40 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class PlazoFijo
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("PlazosFijos")]
+    public partial class PlazoFijo
     {
-        private long id;
-        private DateTime fechaHoraCreacion;
-        private DateTime fechaInicioPlazo;
-        private DateTime fechaFinPlazo;
-        private float interesAnual;
-        private float monto;
-        private Cuenta cuenta;
-        private TipoPlazoFijo tipoPlazoFijo;
+        public long Id { get; set; }
 
-        public PlazoFijo(long id, DateTime fechaHoraCreacion, DateTime fechaInicioPlazo, DateTime fechaFinPlazo, float interesAnual, float monto, Cuenta cuenta, TipoPlazoFijo tipoPlazoFijo)
-        {
-            this.Id = id;
-            this.FechaHoraCreacion = fechaHoraCreacion;
-            this.FechaInicioPlazo = fechaInicioPlazo;
-            this.FechaFinPlazo = fechaFinPlazo;
-            this.InteresAnual = interesAnual;
-            this.Monto = monto;
-            this.Cuenta = cuenta;
-            this.TipoPlazoFijo = tipoPlazoFijo;
-        }
+        [Column(TypeName = "timestamp")]
+        [MaxLength(8)]
+        [Timestamp]
+        public byte[] FechaHoraCreacion { get; set; }
 
-        public long Id { get => id; set => id = value; }
-        public DateTime FechaHoraCreacion { get => fechaHoraCreacion; set => fechaHoraCreacion = value; }
-        public DateTime FechaInicioPlazo { get => fechaInicioPlazo; set => fechaInicioPlazo = value; }
-        public DateTime FechaFinPlazo { get => fechaFinPlazo; set => fechaFinPlazo = value; }
-        public float InteresAnual { get => interesAnual; set => interesAnual = value; }
-        public float Monto { get => monto; set => monto = value; }
-        public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
-        public TipoPlazoFijo TipoPlazoFijo { get => tipoPlazoFijo; set => tipoPlazoFijo = value; }
+        [Column(TypeName = "date")]
+        public DateTime FechaInicioPlazo { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime FechaFinPlazo { get; set; }
+
+        public double InteresAnual { get; set; }
+
+        public double Monto { get; set; }
+
+        public long CuentaNroCuenta { get; set; }
+
+        public int TipoPlazoFijoId { get; set; }
+
+        public virtual Cuenta Cuenta { get; set; }
+
+        public virtual TipoPlazoFijo TipoPlazoFijo { get; set; }
     }
 }

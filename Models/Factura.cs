@@ -1,49 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class Factura
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class Factura
     {
-        private long id;
-        private long nroFactura;
-        private float monto;
-        private DateTime fechaPrimerVencimiento;
-        private DateTime fechaSegundoVencimiento;
-        private float montoPrimerVencimiento;
-        private float montoSegundoVencimiento;
-        private DateTime fechaHoraPago;
-        private Servicio servicio;
-        private Cuenta cuenta;
-        private EstadoFactura estadoFactura;
+        public long Id { get; set; }
 
-        public Factura(long id, long nroFactura, float monto, DateTime fechaPrimerVencimiento, DateTime fechaSegundoVencimiento, float montoPrimerVencimiento, float montoSegundoVencimiento, DateTime fechaHoraPago, Servicio servicio, Cuenta cuenta, EstadoFactura estadoFactura)
-        {
-            this.Id = id;
-            this.NroFactura = nroFactura;
-            this.Monto = monto;
-            this.FechaPrimerVencimiento = fechaPrimerVencimiento;
-            this.FechaSegundoVencimiento = fechaSegundoVencimiento;
-            this.MontoPrimerVencimiento = montoPrimerVencimiento;
-            this.MontoSegundoVencimiento = montoSegundoVencimiento;
-            this.FechaHoraPago = fechaHoraPago;
-            this.Servicio = servicio;
-            this.Cuenta = cuenta;
-            this.EstadoFactura = estadoFactura;
-        }
+        public long NroFactura { get; set; }
 
-        public long Id { get => id; set => id = value; }
-        public long NroFactura { get => nroFactura; set => nroFactura = value; }
-        public float Monto { get => monto; set => monto = value; }
-        public DateTime FechaPrimerVencimiento { get => fechaPrimerVencimiento; set => fechaPrimerVencimiento = value; }
-        public DateTime FechaSegundoVencimiento { get => fechaSegundoVencimiento; set => fechaSegundoVencimiento = value; }
-        public float MontoPrimerVencimiento { get => montoPrimerVencimiento; set => montoPrimerVencimiento = value; }
-        public float MontoSegundoVencimiento { get => montoSegundoVencimiento; set => montoSegundoVencimiento = value; }
-        public DateTime FechaHoraPago { get => fechaHoraPago; set => fechaHoraPago = value; }
-        public Servicio Servicio { get => servicio; set => servicio = value; }
-        public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
-        public EstadoFactura EstadoFactura { get => estadoFactura; set => estadoFactura = value; }
+        public double Monto { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime FechaPrimerVencimiento { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? FechaSegundoVencimiento { get; set; }
+
+        public double MontoPrimerVencimiento { get; set; }
+
+        public double? MontoSegundoVencimiento { get; set; }
+
+        public DateTime? FechaHoraPago { get; set; }
+
+        public long ServicioId { get; set; }
+
+        public long? CuentaPagoNroCuenta { get; set; }
+
+        public int EstadoFacturaId { get; set; }
+
+        public long UsuarioId { get; set; }
+
+        public virtual Cuenta CuentaPago { get; set; }
+
+        public virtual EstadoFactura EstadoFactura { get; set; }
+
+        public virtual Servicio Servicio { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
     }
 }

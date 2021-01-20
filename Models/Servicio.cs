@@ -1,25 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace proyecto_clip_money_e_proyecto_clip.Models
 {
-    public class Servicio
-    {
-        private long id;
-        private string razonSocial;
-        private long cuit;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-        public Servicio(long id, string razonSocial, long cuit)
+    public partial class Servicio
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Servicio()
         {
-            this.Id = id;
-            this.RazonSocial = razonSocial;
-            this.Cuit = cuit;
+            Facturas = new HashSet<Factura>();
         }
 
-        public long Id { get => id; set => id = value; }
-        public string RazonSocial { get => razonSocial; set => razonSocial = value; }
-        public long Cuit { get => cuit; set => cuit = value; }
+        public long Id { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string RazonSocial { get; set; }
+
+        public long Cuit { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Factura> Facturas { get; set; }
     }
 }
