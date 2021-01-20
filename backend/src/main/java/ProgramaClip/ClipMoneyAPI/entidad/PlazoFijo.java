@@ -2,6 +2,7 @@ package ProgramaClip.ClipMoneyAPI.entidad;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +20,7 @@ public class PlazoFijo {
 	@GeneratedValue
 	private Long id;
 	@NotNull
-	private Date fechaCreacion;
-	@NotNull
-	private Time horaCreacion;
+	private Timestamp fechaHoraCreacion;
 	@NotNull
 	private Date fechaInicioPlazo;
 	@NotNull
@@ -35,5 +34,5 @@ public class PlazoFijo {
 	private Cuenta cuenta;
 	@ManyToOne
 	@NotNull
-	private TipoPlazoFijo tipo;
+	private TipoPlazoFijo tipoPlazoFijo;
 }

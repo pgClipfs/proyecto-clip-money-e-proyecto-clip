@@ -18,7 +18,7 @@ public class TipoPlazoFijo {
 	@NotNull
 	private String nombre;
 	@NotNull
-	private Integer plazoMinimoEnDias;
+	private Integer plazoMinimoDias;
 	@NotNull
 	private Float interesAnual;
 	@NotNull

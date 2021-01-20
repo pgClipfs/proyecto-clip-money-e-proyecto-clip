@@ -12,5 +12,5 @@ import ProgramaClip.ClipMoneyAPI.entidad.Usuario;
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
 	public Optional<Usuario> findByNick(String nick);
 	
-	public Optional<Usuario> findByDatos_Dni(Integer dni);
+	public Optional<Usuario> findByDatosUsuario_Dni(Integer dni);
 }

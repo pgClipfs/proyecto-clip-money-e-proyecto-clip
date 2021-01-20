@@ -1,7 +1,7 @@
 package ProgramaClip.ClipMoneyAPI.entidad;
 
 import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,8 +28,7 @@ public class Factura {
 	@NotNull
 	private Float montoPrimerVencimiento;
 	private Float montoSegundoVencimiento;
-	private Date fechaPago;
-	private Time horaPago;
+	private Timestamp fechaHoraPago;
 	@ManyToOne
 	@NotNull
 	private Servicio servicio;
@@ -37,5 +36,5 @@ public class Factura {
 	private Cuenta cuentaPago;
 	@ManyToOne
 	@NotNull
-	private EstadoFactura estado;
+	private EstadoFactura estadoFactura;
 }

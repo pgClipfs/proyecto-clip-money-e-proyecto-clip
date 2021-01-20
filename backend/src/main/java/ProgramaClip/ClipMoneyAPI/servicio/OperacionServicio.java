@@ -62,7 +62,7 @@ public class OperacionServicio {
 	}
 	
 	public List<Operacion> getUltimasOperacionesCuenta(Long nroCuenta) {
-		return this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuentaOrderByFecha(nroCuenta, nroCuenta).subList(0, 9);
+		return this.repositorio.findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuentaOrderByFechaHora(nroCuenta, nroCuenta).subList(0, 9);
 	}
 
 	public List<Operacion> getOperacionesCuentaEnPlazo(Long nroCuenta, Date fechaInicioPlazo, Date fechaFinPlazo) {
@@ -70,7 +70,7 @@ public class OperacionServicio {
 		List<Operacion> operacionesEnPlazo = new ArrayList<>();
 		
 		operaciones.forEach((o) -> {
-			if (o.getFecha().after(fechaInicioPlazo) && o.getFecha().before(fechaFinPlazo)) {
+			if (o.getFechaHora().after(fechaInicioPlazo) && o.getFechaHora().before(fechaFinPlazo)) {
 				operacionesEnPlazo.add(o);
 			}
 		});
@@ -83,7 +83,7 @@ public class OperacionServicio {
 		List<Operacion> operacionesEnPlazo = new ArrayList<>();
 		
 		operaciones.forEach((o) -> {
-			if (o.getFecha().before(fechaFinPlazo)) {
+			if (o.getFechaHora().before(fechaFinPlazo)) {
 				operacionesEnPlazo.add(o);
 			}
 		});
@@ -96,7 +96,7 @@ public class OperacionServicio {
 		List<Operacion> operacionesEnPlazo = new ArrayList<>();
 		
 		operaciones.forEach((o) -> {
-			if (o.getFecha().after(fechaInicioPlazo)) {
+			if (o.getFechaHora().after(fechaInicioPlazo)) {
 				operacionesEnPlazo.add(o);
 			}
 		});

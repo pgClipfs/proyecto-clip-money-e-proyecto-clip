@@ -16,5 +16,5 @@ public interface OperacionRepositorio extends JpaRepository<Operacion, Long> {
 	public List<Operacion> findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuenta(Long cuentaOrigen_nroCuenta, Long cuentaDestino_nroCuenta);
 	public Page<Operacion> findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuenta(Long cuentaOrigen_nroCuenta, Long cuentaDestino_nroCuenta, Pageable pageable);
 	public Page<Operacion> findByCuentaOrigen_CvuOrCuentaDestino_Cvu(String cuentaOrigen_cvu, String cuentaDestino_cvu, Pageable pageable);
-	public List<Operacion> findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuentaOrderByFecha(Long cuentaOrigen_nroCuenta, Long cuentaDestino_nroCuenta);
+	public List<Operacion> findByCuentaOrigen_NroCuentaOrCuentaDestino_NroCuentaOrderByFechaHora(Long cuentaOrigen_nroCuenta, Long cuentaDestino_nroCuenta);
 }

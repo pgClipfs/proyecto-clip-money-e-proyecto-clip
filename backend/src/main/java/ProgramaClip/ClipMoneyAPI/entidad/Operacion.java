@@ -1,7 +1,6 @@
 package ProgramaClip.ClipMoneyAPI.entidad;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +18,9 @@ public class Operacion {
 	@GeneratedValue
 	private Long id;
 	@NotNull
-	private Float saldo;
+	private Float monto;
 	@NotNull
-	private Date fecha;
-	@NotNull
-	private Time hora;
+	private Timestamp fechaHora;
 	@ManyToOne
 	private Cuenta cuentaOrigen;
 	@ManyToOne

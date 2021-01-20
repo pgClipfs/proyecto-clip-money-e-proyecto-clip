@@ -16,16 +16,6 @@ CREATE TABLE servicio (
 	UNIQUE KEY cuit_servicio_unique (cuit)
 );
 	
-DROP TABLE IF EXISTS usuario;
- 
-CREATE TABLE usuario (
-	id BIGINT NOT NULL,
-	nick VARCHAR(50) NOT NULL,
-	password VARCHAR(64) NOT NULL,
-	PRIMARY KEY (id),
-	UNIQUE KEY nick_usuario_unique (nick)
-);
-
 DROP TABLE IF EXISTS localidad;
  
 CREATE TABLE localidad (
@@ -47,20 +37,30 @@ CREATE TABLE datos_usuario (
 	codigo_postal VARCHAR(10) NOT NULL,
 	fecha_nacimiento DATE NOT NULL,
 	dato_biometrico VARCHAR(50),
-	usuario_id BIGINT NOT NULL,
 	localidad_id INTEGER NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY email_datos_usuario_unique (email),
 	UNIQUE KEY dni_datos_usuario_unique (dni)
 );
-
-ALTER TABLE datos_usuario
-    ADD FOREIGN KEY (usuario_id) 
-    REFERENCES usuario(id);
 	
 ALTER TABLE datos_usuario
     ADD FOREIGN KEY (localidad_id) 
     REFERENCES localidad(id);
+	
+DROP TABLE IF EXISTS usuario;
+ 
+CREATE TABLE usuario (
+	id BIGINT NOT NULL,
+	nick VARCHAR(50) NOT NULL,
+	contrasena VARCHAR(64) NOT NULL,
+	datos_usuario_id BIGINT NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE KEY nick_usuario_unique (nick)
+);
+
+ALTER TABLE usuario
+    ADD FOREIGN KEY (datos_usuario_id) 
+    REFERENCES datos_usuario(id);
 
 DROP TABLE IF EXISTS moneda;
  
@@ -111,7 +111,7 @@ CREATE TABLE factura (
 	monto_segundo_vencimiento FLOAT,
 	fecha_hora_pago TIMESTAMP,
 	servicio_id BIGINT NOT NULL,
-	nro_cuenta BIGINT,
+	cuenta_pago_nro_cuenta BIGINT,
 	estado_factura_id INTEGER NOT NULL,
 	usuario_id BIGINT NOT NULL,
 	PRIMARY KEY (id)
@@ -122,7 +122,7 @@ ALTER TABLE factura
     REFERENCES servicio(id);
 	
 ALTER TABLE factura
-    ADD FOREIGN KEY (nro_cuenta) 
+    ADD FOREIGN KEY (cuenta_pago_nro_cuenta) 
     REFERENCES cuenta(nro_cuenta);
 
 ALTER TABLE factura
@@ -156,15 +156,15 @@ CREATE TABLE plazo_fijo (
 	fecha_hora_creacion TIMESTAMP NOT NULL,
 	fecha_inicio_plazo DATE NOT NULL,
 	fecha_fin_plazo DATE NOT NULL,
-	interes FLOAT NOT NULL,
+	interes_anual FLOAT NOT NULL,
 	monto FLOAT NOT NULL,
-	nro_cuenta BIGINT NOT NULL,
+	cuenta_nro_cuenta BIGINT NOT NULL,
 	tipo_plazo_fijo_id INTEGER NOT NULL,
 	PRIMARY KEY (id)
 );
 
 ALTER TABLE plazo_fijo
-    ADD FOREIGN KEY (nro_cuenta) 
+    ADD FOREIGN KEY (cuenta_nro_cuenta) 
     REFERENCES cuenta(nro_cuenta);
 
 ALTER TABLE plazo_fijo
@@ -177,15 +177,15 @@ CREATE TABLE operacion (
 	id BIGINT NOT NULL,
 	monto FLOAT NOT NULL,
 	fecha_hora TIMESTAMP NOT NULL,
-	cuenta_origen BIGINT,
-	cuenta_destino BIGINT NOT NULL,
+	cuenta_origen_nro_cuenta BIGINT,
+	cuenta_destino_nro_cuenta BIGINT NOT NULL,
 	PRIMARY KEY (id)
 );
 
 ALTER TABLE operacion
-    ADD FOREIGN KEY (cuenta_origen) 
+    ADD FOREIGN KEY (cuenta_origen_nro_cuenta) 
     REFERENCES cuenta(nro_cuenta);
 
 ALTER TABLE operacion
-    ADD FOREIGN KEY (cuenta_destino) 
+    ADD FOREIGN KEY (cuenta_destino_nro_cuenta) 
     REFERENCES cuenta(nro_cuenta);

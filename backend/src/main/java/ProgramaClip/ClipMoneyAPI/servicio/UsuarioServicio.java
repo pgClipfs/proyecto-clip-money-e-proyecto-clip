@@ -48,7 +48,7 @@ public class UsuarioServicio {
 	}
 
 	public Usuario getUsuarioPorDni(Integer dniUsuario) {
-		Optional<Usuario> usuario = this.repositorio.findByDatos_Dni(dniUsuario);
+		Optional<Usuario> usuario = this.repositorio.findByDatosUsuario_Dni(dniUsuario);
 		
 		if (usuario.isPresent()) {
 			return usuario.get();

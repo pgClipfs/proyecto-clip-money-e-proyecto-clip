@@ -26,7 +26,7 @@ public class Usuario {
 	private String contrasena;
 	@OneToOne
 	@NotNull
-	private DatosUsuario datos;
+	private DatosUsuario datosUsuario;
 	@OneToMany
 	private List<Factura> facturas;
 	@OneToMany
