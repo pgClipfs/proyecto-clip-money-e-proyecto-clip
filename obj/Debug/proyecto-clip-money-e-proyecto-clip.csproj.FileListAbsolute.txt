@@ -90,3 +90,7 @@ F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\obj\Debug\proyecto-cl
 F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\obj\Debug\proyecto-clip-money-e-proyecto-clip.csproj.CopyComplete
 F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\obj\Debug\proyecto-clip-money-e-proyecto-clip.dll
 F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\obj\Debug\proyecto-clip-money-e-proyecto-clip.pdb
+F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\bin\EntityFramework.dll
+F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\bin\EntityFramework.SqlServer.dll
+F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\bin\EntityFramework.xml
+F:\Documents\Proyectos\proyecto-clip-money-e-proyecto-clip\bin\EntityFramework.SqlServer.xml

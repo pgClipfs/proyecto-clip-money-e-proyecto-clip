@@ -5,6 +5,8 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Script.Serialization;
+    using System.Xml.Serialization;
 
     public partial class Moneda
     {
@@ -17,8 +19,6 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
 
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
         public string Nombre { get; set; }
 
         public double ValorDolares { get; set; }
@@ -28,5 +28,13 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TipoPlazoFijo> TiposPlazosFijos { get; set; }
+
+        public MonedaModelo ToModel()
+        {
+            return new MonedaModelo(
+                this.Id,
+                this.Nombre,
+                this.ValorDolares);
+        }
     }
 }

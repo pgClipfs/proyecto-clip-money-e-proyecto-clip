@@ -6,6 +6,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+
     public partial class Cuenta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -45,5 +46,14 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlazoFijo> PlazosFijos { get; set; }
+
+        public CuentaModelo ToModel()
+        {
+            return new CuentaModelo(
+                this.NroCuenta,
+                this.Cvu,
+                this.Saldo,
+                this.Moneda.ToModel());
+        }
     }
 }

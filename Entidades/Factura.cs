@@ -40,6 +40,6 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
 
         public virtual Servicio Servicio { get; set; }
 
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario  Usuario { get; set; }
     }
 }
