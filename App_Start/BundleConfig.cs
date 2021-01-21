@@ -26,15 +26,15 @@ namespace proyecto_clip_money_e_proyecto_clip
             //          "~/Content/bootstrap.css",
             //          "~/Content/site.css"));
             bundles.Add(new Bundle("~/Script/Bundles").Include(
-                "~/bundles/inline.*",
-                "~/bundles/polyfills.*",
-                "~/bundles/scripts.*",
-                "~/bundles/vendor.*",
-                "~/bundles/runtime.*",
-                "~/bundles/zone.*",
-                "~/bundles/main.*"));
+                "~/Bundles/inline.*",
+                "~/Bundles/polyfills.*",
+                "~/Bundles/scripts.*",
+                "~/Bundles/vendor.*",
+                "~/Bundles/runtime.*",
+                "~/Bundles/zone.*",
+                "~/Bundles/main.*"));
 
-            bundles.Add(new StyleBundle("~/Content/Styles").Include("~/bundles/styles.*"));
+            bundles.Add(new StyleBundle("~/Content/Styles").Include("~/Bundles/styles.*"));
         }
     }
 }

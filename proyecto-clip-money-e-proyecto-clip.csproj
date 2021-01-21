@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -52,6 +58,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,21 +138,35 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Gestores\CuentaGestor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cuenta.cs" />
-    <Compile Include="Models\DatosUsuario.cs" />
-    <Compile Include="Models\EstadoFactura.cs" />
-    <Compile Include="Models\Factura.cs" />
-    <Compile Include="Models\Localidad.cs" />
-    <Compile Include="Models\Moneda.cs" />
-    <Compile Include="Models\Operacion.cs" />
-    <Compile Include="Models\PlazoFijo.cs" />
-    <Compile Include="Models\Servicio.cs" />
-    <Compile Include="Models\TipoPlazoFijo.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Entidades\Cuenta.cs" />
+    <Compile Include="Entidades\DatosUsuario.cs" />
+    <Compile Include="Entidades\EstadoFactura.cs" />
+    <Compile Include="Entidades\Factura.cs" />
+    <Compile Include="Entidades\Localidad.cs" />
+    <Compile Include="Entidades\ModeloDatos.cs" />
+    <Compile Include="Entidades\Moneda.cs" />
+    <Compile Include="Entidades\Operacion.cs" />
+    <Compile Include="Entidades\PlazoFijo.cs" />
+    <Compile Include="Entidades\Servicio.cs" />
+    <Compile Include="Entidades\TipoPlazoFijo.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Models\CuentaModelo.cs" />
+    <Compile Include="Models\DatosUsuarioModelo.cs" />
+    <Compile Include="Models\EstadoFacturaModelo.cs" />
+    <Compile Include="Models\FacturaModelo.cs" />
+    <Compile Include="Models\LocalidadModelo.cs" />
+    <Compile Include="Models\MonedaModelo.cs" />
+    <Compile Include="Models\OperacionModelo.cs" />
+    <Compile Include="Models\PlazoFijoModelo.cs" />
+    <Compile Include="Models\ServicioModelo.cs" />
+    <Compile Include="Models\TipoPlazoFijoModelo.cs" />
+    <Compile Include="Models\UsuarioModelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
