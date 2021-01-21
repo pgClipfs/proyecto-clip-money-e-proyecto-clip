@@ -12,44 +12,64 @@ namespace proyecto_clip_money_e_proyecto_clip.Controllers
 {
     public class CuentaController : ApiController
     {
-        private List<CuentaModelo> cuentas;
+        //private List<CuentaModelo> cuentas;
         private CuentaGestor gestor;
 
-        public List<CuentaModelo> Cuentas { get => cuentas; set => cuentas = value; }
+        //public List<CuentaModelo> Cuentas { get => cuentas; set => cuentas = value; }
         public CuentaGestor Gestor { get => gestor; set => gestor = value; }
 
         public CuentaController()
         {
             this.Gestor = new CuentaGestor();
-
-            this.Cuentas = Gestor.ObtenerCuentas();
         }
 
         // GET: api/Cuenta
-        public IEnumerable<CuentaModelo> Get()
+        public IHttpActionResult Get()
         {
-            return this.Cuentas;
+            return Ok(Gestor.ObtenerCuentas());
         }
 
         // GET: api/Cuenta/5
-        public CuentaModelo Get(long id)
+        public IHttpActionResult Get(long id)
         {
-            return Gestor.ObtenerCuentaPorNroCuenta(id);
+            CuentaModelo cuenta = Gestor.ObtenerCuentaPorNroCuenta(id);
+            
+            if (cuenta == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cuenta);
         }
 
         // POST: api/Cuenta
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody] CuentaModelo cuenta)
         {
+            if (cuenta == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(Gestor.CrearCuenta(cuenta));
         }
 
         // PUT: api/Cuenta/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(long id, [FromBody] CuentaModelo cuenta)
         {
+            if (cuenta == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(Gestor.EditarCuenta(id, cuenta));
         }
 
         // DELETE: api/Cuenta/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(long id)
         {
+            Gestor.EliminarCuenta(id);
+
+            return Ok();
         }
     }
 }

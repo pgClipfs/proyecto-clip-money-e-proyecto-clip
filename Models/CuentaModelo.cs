@@ -8,22 +8,33 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
     [Serializable()]
     public class CuentaModelo
     {
-        private long nroCuenta;
         private string cvu;
         private double saldo;
         private MonedaModelo moneda;
+        private UsuarioModelo usuario;
 
-        public CuentaModelo(long nroCuenta, string cvu, double saldo, MonedaModelo moneda)
+        public CuentaModelo(string cvu, double saldo, MonedaModelo moneda, UsuarioModelo usuario)
         {
-            this.NroCuenta = nroCuenta;
             this.Cvu = cvu;
             this.Saldo = saldo;
             this.Moneda = moneda;
+            this.Usuario = usuario;
         }
 
-        public long NroCuenta { get => nroCuenta; set => nroCuenta = value; }
         public string Cvu { get => cvu; set => cvu = value; }
         public double Saldo { get => saldo; set => saldo = value; }
         public MonedaModelo Moneda { get => moneda; set => moneda = value; }
+        public UsuarioModelo Usuario { get => usuario; set => usuario = value; }
+
+        public Cuenta ToEntity()
+        {
+            return new Cuenta
+            {
+                Cvu = this.Cvu,
+                Saldo = this.Saldo,
+                MonedaId = this.Moneda.Id,
+                UsuarioId = this.Usuario.Id
+            };
+        }
     }
 }

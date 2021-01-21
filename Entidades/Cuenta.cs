@@ -50,10 +50,10 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
         public CuentaModelo ToModel()
         {
             return new CuentaModelo(
-                this.NroCuenta,
                 this.Cvu,
                 this.Saldo,
-                this.Moneda.ToModel());
+                this.Moneda.ToModel(),
+                this.Usuario.ToModel());
         }
     }
 }

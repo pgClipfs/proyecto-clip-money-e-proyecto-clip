@@ -34,5 +34,13 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Factura> Facturas { get; set; }
+
+        public UsuarioModelo ToModel()
+        {
+            return new UsuarioModelo(
+                this.Id,
+                this.Nick,
+                this.Contrasena);
+        }
     }
 }
