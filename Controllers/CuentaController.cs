@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace proyecto_clip_money_e_proyecto_clip.Controllers
 {
+    [Authorize]
     public class CuentaController : ApiController
     {
         //private List<CuentaModelo> cuentas;
@@ -65,7 +66,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Controllers
         }
 
         // DELETE: api/Cuenta/5
-        public IHttpActionResult Delete(long id)
+        public IHttpActionResult  Delete(long id)
         {
             Gestor.EliminarCuenta(id);
 
