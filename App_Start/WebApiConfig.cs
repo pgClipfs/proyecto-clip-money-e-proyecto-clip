@@ -1,10 +1,21 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
+using proyecto_clip_money_e_proyecto_clip.Controllers;
 
 class WebApiConfig
 {
-    public static void Register(HttpConfiguration configuration)
+    public static void Register(HttpConfiguration config)
     {
-        configuration.Routes.MapHttpRoute("API Default", "api/{controller}/{id}",
-            new { id = RouteParameter.Optional });
+        config.EnableCors();
+
+        config.MapHttpAttributeRoutes();
+
+        config.MessageHandlers.Add(new TokenValidationHandler());
+
+        config.Routes.MapHttpRoute(
+            name: "API Default",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+        );
     }
 }

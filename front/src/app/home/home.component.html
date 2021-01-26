@@ -1,6 +1,6 @@
 ﻿<div class="p-4">
     <div class="container">
-        <h1 class="">Hola {{user.firstName}}!</h1>
+        <h1 class="" *ngIf="usuarioActual">Hola {{ usuarioActual.datosUsuario.Nombres }}!</h1>
         <p>Money E-Wallet!</p>
         <p><a routerLink="/users">Manejo Users</a></p>
 

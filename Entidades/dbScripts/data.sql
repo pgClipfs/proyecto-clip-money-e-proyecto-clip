@@ -30,9 +30,9 @@ INSERT INTO [dbo].[DatosUsuarios] ([dni], [nombres], [apellidos], [email], [tele
 
 /* USUARIO */
 INSERT INTO [dbo].[Usuarios] ([nick], [contrasena], [datosUsuarioId]) VALUES 
-	('admin', 'D82494F05D6917BA02F7AAA29689CCB444BB73F20380876CB05D1F37537B7892', 3),
-	('fmarquez', 'EF797C8118F02DFB649607DD5D3F8C7623048C9C063D532CC95C5ED7A898A64F', 1),
-	('edert', 'EF797C8118F02DFB649607DD5D3F8C7623048C9C063D532CC95C5ED7A898A64F', 2);
+	('admin', '0242c0436daa4c241ca8a793764b7dfb50c223121bb844cf49be670a3af4dd18', 3),
+	('fmarquez', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1),
+	('edert', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 2);
 	
 /* MONEDA */
 INSERT INTO [dbo].[Monedas] ([nombre], [valorDolares]) VALUES
