@@ -36,7 +36,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Controllers
             if (login == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            UsuarioModelo usuario = new UsuarioGestor().ObetenerUsuarioPorNick(login.Nick);
+            UsuarioModelo usuario = new UsuarioGestor().ObtenerUsuarioPorNick(login.Nick);
 
             if (usuario == null)
                 return Unauthorized();

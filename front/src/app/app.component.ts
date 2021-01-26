@@ -2,16 +2,23 @@
 
 import { AccountService } from './_services';
 import { User } from './_models';
+import { Usuario } from './_models/Usuario';
+import { UsuarioService } from './_services/usuario/usuario.service';
+import { LoginService } from './_services/login/login.service';
+import { Router } from '@angular/router';
+import { LoginResponse } from './_models/LoginResponse';
 
-@Component({ selector: 'app', templateUrl: 'app.component.html' })
+@Component({ selector: 'app-root', templateUrl: 'app.component.html' })
 export class AppComponent {
-    user: User;
+    loginResponse : LoginResponse;
 
-    constructor(private accountService: AccountService) {
-        this.accountService.user.subscribe(x => this.user = x);
+    constructor(private router : Router,
+        private loginServicio : LoginService) {
+            this.loginServicio.loginResponse.subscribe(lr => this.loginResponse = lr);
     }
 
     logout() {
-        this.accountService.logout();
+        this.loginServicio.logout();
+        this.router.navigate(['/login']);
     }
 }

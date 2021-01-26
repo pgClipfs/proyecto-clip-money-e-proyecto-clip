@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace proyecto_clip_money_e_proyecto_clip.Controllers
 {
@@ -30,6 +31,12 @@ namespace proyecto_clip_money_e_proyecto_clip.Controllers
         public string Get(long id)
         {
             return "value";
+        }
+
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IHttpActionResult Get(string nick)
+        {
+            return Ok(Gestor.ObtenerUsuarioPorNick(nick));
         }
 
         // POST: api/Usuario

@@ -6,6 +6,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("EstadosFacturas")]
     public partial class EstadoFactura
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

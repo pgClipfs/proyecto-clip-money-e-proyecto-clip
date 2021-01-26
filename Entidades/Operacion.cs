@@ -6,6 +6,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Operaciones")]
     public partial class Operacion
     {
         public long Id { get; set; }

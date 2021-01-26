@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
+import { LoginService } from '@app/_services/login/login.service';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -16,18 +17,23 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService,
+        private loginService : LoginService,
+        //private accountService: AccountService,
         private alertService: AlertService
     ) { }
 
     ngOnInit() {
-        this.form = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
-        });
-
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        if (this.loginService.loginResponseValue)  {
+            this.router.navigate(["/"]);
+        } else {
+            this.form = this.formBuilder.group({
+                username: ['', Validators.required],
+                password: ['', Validators.required]
+            });
+    
+            // get return url from route parameters or default to '/'
+            this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        }        
     }
 
     // convenience getter for easy access to form fields
@@ -45,11 +51,11 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.accountService.login(this.f.username.value, this.f.password.value)
+        this.loginService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(["/"]);
                 },
                 error => {
                     this.alertService.error(error);

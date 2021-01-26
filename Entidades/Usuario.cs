@@ -30,7 +30,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cuenta> Cuentas { get; set; }
 
-        public virtual DatosUsuarioModelo DatosUsuario { get; set; }
+        public virtual DatosUsuario DatosUsuario { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Factura> Facturas { get; set; }
@@ -40,7 +40,8 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
             return new UsuarioModelo(
                 this.Id,
                 this.Nick,
-                this.Contrasena);
+                this.Contrasena,
+                this.DatosUsuario.ToModel());
         }
     }
 }

@@ -8,7 +8,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Gestores
 {
     public class UsuarioGestor
     {
-        public UsuarioModelo ObetenerUsuarioPorNick(string nick)
+        public UsuarioModelo ObtenerUsuarioPorNick(string nick)
         {
             using (var db = new ModeloDatos())
             {

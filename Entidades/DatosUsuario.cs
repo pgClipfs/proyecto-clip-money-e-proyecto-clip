@@ -52,5 +52,19 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuarios { get; set; }
+
+        public DatosUsuarioModelo ToModel()
+        {
+            return new DatosUsuarioModelo(
+                this.Id,
+                this.Dni,
+                this.Nombres,
+                this.Apellidos,
+                this.Email,
+                this.Telefono,
+                this.Direccion,
+                this.CodigoPostal,
+                this.Localidad.ToModel());
+        }
     }
 }
