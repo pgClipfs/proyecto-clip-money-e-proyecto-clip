@@ -14,10 +14,11 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
         private string email;
         private string telefono;
         private string direccion;
+        private DateTime fechaNacimiento;
         private string codigoPostal;
         private LocalidadModelo localidad;
 
-        public DatosUsuarioModelo(long id, int dni, string nombres, string apellidos, string email, string telefono, string direccion, string codigoPostal, LocalidadModelo localidad)
+        public DatosUsuarioModelo(long id, int dni, string nombres, string apellidos, string email, string telefono, string direccion, string codigoPostal, LocalidadModelo localidad, DateTime fechaNacimiento)
         {
             this.Id = id;
             this.Dni = dni;
@@ -28,6 +29,7 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
             this.Direccion = direccion;
             this.CodigoPostal = codigoPostal;
             this.Localidad = localidad;
+            this.FechaNacimiento = fechaNacimiento;
         }
 
         public long Id { get => id; set => id = value; }
@@ -39,5 +41,6 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
         public string Direccion { get => direccion; set => direccion = value; }
         public string CodigoPostal { get => codigoPostal; set => codigoPostal = value; }
         public LocalidadModelo Localidad { get => localidad; set => localidad = value; }
+        public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
     }
 }

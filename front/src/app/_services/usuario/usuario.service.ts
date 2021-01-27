@@ -23,4 +23,8 @@ export class UsuarioService {
 
         return this.http.get<Usuario>(`${environment.apiUrl}/Usuario`, { headers : headers, params : params });
     }
+
+    registrar(usuarioNuevo : Usuario) {
+        return this.http.post<Usuario>(`${environment.apiUrl}/Usuario`, usuarioNuevo);
+    }
 }

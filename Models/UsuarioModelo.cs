@@ -25,5 +25,16 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
         public string Nick { get => nick; set => nick = value; }
         public string Contrasena { get => contrasena; set => contrasena = value; }
         public DatosUsuarioModelo DatosUsuario { get => datosUsuario; set => datosUsuario = value; }
+
+        internal Usuario ToEntity()
+        {
+            return new Usuario
+            {
+                Id = this.Id,
+                Nick = this.Nick,
+                Contrasena = this.Contrasena,
+                DatosUsuarioId = this.DatosUsuario.Id
+            };
+        }
     }
 }

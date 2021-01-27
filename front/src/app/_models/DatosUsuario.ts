@@ -4,7 +4,7 @@ export class DatosUsuario {
     Id : number;
     Dni : number;
     Nombres : string;
-    Apellido : string;
+    Apellidos : string;
     Email : string;
     Telefono : string;
     Direccion : string;

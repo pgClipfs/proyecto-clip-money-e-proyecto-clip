@@ -1,28 +1,12 @@
-﻿<div class="p-4">
-    <div class="container">
-        <h1 class="" *ngIf="usuarioActual">Hola {{ usuarioActual.datosUsuario.Nombres }}!</h1>
-        <p>Money E-Wallet!</p>
-        <p><a routerLink="/users">Manejo Users</a></p>
+﻿<div class="container">
+    <h1 class="text-light" *ngIf="usuarioActual">Hola {{ usuarioActual.datosUsuario.Nombres }}!</h1>
+    <p class="text-light">Money E-Wallet!</p>
 
-        <div>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
-            <p style="color:white">. </p>
+    <div class="card" *ngFor="let cuenta of cuentas">
+        <div class="card-body">
+          <h5 class="card-title">{{ cuenta.cvu }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ cuenta.moneda.nombre }}</h6>
+          <p class="card-text"><strong>{{ cuenta.saldo | currency }}</strong></p>
         </div>
-        
-    </div>
+      </div>
 </div>

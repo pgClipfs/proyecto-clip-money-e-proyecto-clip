@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace proyecto_clip_money_e_proyecto_clip.Controllers
 {
@@ -35,6 +36,19 @@ namespace proyecto_clip_money_e_proyecto_clip.Controllers
         {
             CuentaModelo cuenta = Gestor.ObtenerCuentaPorNroCuenta(id);
             
+            if (cuenta == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cuenta);
+        }
+
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IHttpActionResult Get(string nick)
+        {
+            List<CuentaModelo> cuenta = Gestor.ObtenerCuentaPorNickUsuario(nick);
+
             if (cuenta == null)
             {
                 return NotFound();
