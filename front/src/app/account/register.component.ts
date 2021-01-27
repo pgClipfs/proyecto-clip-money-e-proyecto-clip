@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
             nick : this.form.get("nick").value,
             contrasena : this.form.get("contrasena").value,
             datosUsuario : {
-                Id : null,
+                Id : 1,
                 Dni : this.form.get("dni").value,
                 Nombres : this.form.get("nombres").value,
                 Apellidos : this.form.get("apellidos").value,

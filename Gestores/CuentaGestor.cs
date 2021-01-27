@@ -44,6 +44,26 @@ namespace proyecto_clip_money_e_proyecto_clip.Gestores
             }
         }
 
+        public List<CuentaModelo> ObtenerCuentaPorNickUsuario(string nick)
+        {
+            using (var db = new ModeloDatos())
+            {
+                var cuentas = new List<CuentaModelo>();
+
+                var query = from c in db.Cuentas
+                            where c.Usuario.Nick == nick
+                            select c;
+
+                
+                foreach (Cuenta cuenta in query)
+                {
+                    cuentas.Add(cuenta.ToModel());
+                }
+
+                return cuentas;
+            }
+        }
+
         public CuentaModelo CrearCuenta(CuentaModelo cuenta)
         {
             using (var db = new ModeloDatos())
