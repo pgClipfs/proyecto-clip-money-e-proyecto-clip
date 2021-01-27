@@ -64,7 +64,8 @@ namespace proyecto_clip_money_e_proyecto_clip.Models
                 this.Telefono,
                 this.Direccion,
                 this.CodigoPostal,
-                this.Localidad.ToModel());
+                this.Localidad.ToModel(),
+                this.FechaNacimiento);
         }
     }
 }

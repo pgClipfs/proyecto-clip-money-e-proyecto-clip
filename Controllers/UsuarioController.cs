@@ -1,4 +1,5 @@
 ﻿using proyecto_clip_money_e_proyecto_clip.Gestores;
+using proyecto_clip_money_e_proyecto_clip.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,8 +41,16 @@ namespace proyecto_clip_money_e_proyecto_clip.Controllers
         }
 
         // POST: api/Usuario
-        public void Post([FromBody]string value)
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [AllowAnonymous]
+        public IHttpActionResult Post([FromBody]UsuarioModelo usuario)
         {
+            if (usuario == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(Gestor.CrearUsuario(usuario));
         }
 
         // PUT: api/Usuario/5
